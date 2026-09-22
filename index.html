@@ -262,6 +262,45 @@
   @media (max-width: 860px) { .nav-links { display: none; } }
 
   .k-logo-svg { width: 100%; height: 100%; }
+
+  /* ---------- lead form modal ---------- */
+  .lead-overlay {
+    position: fixed; inset: 0; z-index: 100;
+    background: color-mix(in srgb, #000 62%, transparent);
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+  }
+  .lead-overlay[hidden] { display: none; }
+  .lead-modal {
+    width: 100%; max-width: 440px; max-height: 90vh; overflow-y: auto;
+    background: var(--bg-elevated); color: var(--ink);
+    border-radius: 20px; border: 1px solid var(--rule);
+    padding: clamp(24px, 5vw, 32px);
+    position: relative;
+  }
+  .lead-close {
+    position: absolute; top: 16px; right: 16px;
+    width: 32px; height: 32px; border-radius: 999px; border: 1px solid var(--rule);
+    background: transparent; color: var(--ink); font-size: 1rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .lead-close:hover { border-color: var(--ink-muted); }
+  .lead-modal h2 { font-size: 1.4rem; padding-right: 30px; }
+  .lead-modal .lede { margin: 8px 0 0; color: var(--ink-muted); font-size: 0.92rem; }
+  .lead-form { margin-top: 22px; display: flex; flex-direction: column; gap: 14px; }
+  .lead-field { display: flex; flex-direction: column; gap: 6px; }
+  .lead-field label { font-size: 0.82rem; font-weight: 700; color: var(--ink-muted); }
+  .lead-field input, .lead-field select {
+    font: inherit; font-size: 0.96rem; color: var(--ink); background: var(--bg);
+    border: 1px solid var(--rule); border-radius: 10px; padding: 11px 13px;
+  }
+  .lead-field input:focus-visible, .lead-field select:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .lead-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .lead-submit { margin-top: 4px; width: 100%; justify-content: center; }
+  .lead-submit[disabled] { opacity: 0.6; cursor: default; transform: none; }
+  .lead-status { margin: 0; font-size: 0.88rem; min-height: 1.2em; }
+  .lead-status[data-state="ok"] { color: var(--accent); }
+  .lead-status[data-state="error"] { color: #ff8a75; }
 </style>
 </head>
 <body>
@@ -343,6 +382,38 @@
 
 <div class="mobile-cta" id="mobile-cta"></div>
 
+<div class="lead-overlay" id="lead-overlay" hidden>
+  <div class="lead-modal" role="dialog" aria-modal="true" aria-labelledby="lead-form-heading">
+    <button type="button" class="lead-close" id="lead-close" aria-label="Close">✕</button>
+    <h2 id="lead-form-heading"></h2>
+    <p class="lede" id="lead-form-sub"></p>
+    <form class="lead-form" id="lead-form" novalidate>
+      <div class="lead-field">
+        <label id="lead-name-label" for="lead-name"></label>
+        <input type="text" id="lead-name" name="name" required autocomplete="name">
+      </div>
+      <div class="lead-field">
+        <label id="lead-company-label" for="lead-company"></label>
+        <input type="text" id="lead-company" name="company" autocomplete="organization">
+      </div>
+      <div class="lead-field">
+        <label id="lead-phone-label" for="lead-phone"></label>
+        <input type="tel" id="lead-phone" name="phone" required autocomplete="tel">
+      </div>
+      <div class="lead-field">
+        <label id="lead-service-label" for="lead-service"></label>
+        <select id="lead-service" name="service" required></select>
+      </div>
+      <div class="lead-hp" aria-hidden="true">
+        <label for="lead-website">Website</label>
+        <input type="text" id="lead-website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+      <button type="submit" class="btn btn-primary lead-submit" id="lead-submit"></button>
+      <p class="lead-status" id="lead-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</div>
+
 <script>
 (function () {
   // Every visible bit of copy on this page comes from content.json, fetched at
@@ -365,6 +436,114 @@
     return node;
   }
 
+  var API_BASE = "https://kashv-links.vercel.app/api/leads";
+
+  function buildLeadForm(content) {
+    var d = content.leadForm;
+    if (!d) return;
+
+    document.getElementById("lead-form-heading").textContent = d.heading;
+    document.getElementById("lead-form-sub").textContent = d.subheading;
+    document.getElementById("lead-name-label").textContent = d.fields.name;
+    document.getElementById("lead-company-label").textContent = d.fields.company;
+    document.getElementById("lead-phone-label").textContent = d.fields.phone;
+    document.getElementById("lead-service-label").textContent = d.serviceLabel;
+    document.getElementById("lead-submit").textContent = d.submitLabel;
+
+    var select = document.getElementById("lead-service");
+    select.appendChild(el("option", { value: "", text: d.servicePlaceholder }));
+    d.serviceOptions.forEach(function (opt) {
+      select.appendChild(el("option", { value: opt.value, text: opt.label }));
+    });
+
+    var overlay = document.getElementById("lead-overlay");
+    var form = document.getElementById("lead-form");
+    var status = document.getElementById("lead-status");
+    var submitBtn = document.getElementById("lead-submit");
+    var lastFocused = null;
+
+    function openLeadForm(serviceValue) {
+      lastFocused = document.activeElement;
+      status.textContent = "";
+      status.removeAttribute("data-state");
+      form.reset();
+      if (serviceValue) select.value = serviceValue;
+      overlay.hidden = false;
+      document.getElementById("lead-name").focus();
+      document.addEventListener("keydown", onKeydown);
+    }
+
+    function closeLeadForm() {
+      overlay.hidden = true;
+      document.removeEventListener("keydown", onKeydown);
+      if (lastFocused && lastFocused.focus) lastFocused.focus();
+    }
+
+    function onKeydown(e) {
+      if (e.key === "Escape") closeLeadForm();
+    }
+
+    document.addEventListener("click", function (e) {
+      var trigger = e.target.closest("[data-open-form]");
+      if (trigger) {
+        e.preventDefault();
+        openLeadForm(trigger.getAttribute("data-open-form") || null);
+      }
+    });
+
+    document.getElementById("lead-close").addEventListener("click", closeLeadForm);
+    overlay.addEventListener("click", function (e) {
+      if (e.target === overlay) closeLeadForm();
+    });
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      var payload = {
+        name: document.getElementById("lead-name").value.trim(),
+        company: document.getElementById("lead-company").value.trim(),
+        phone: document.getElementById("lead-phone").value.trim(),
+        service: select.value,
+        website: document.getElementById("lead-website").value
+      };
+
+      if (!payload.name || !payload.phone || !payload.service) {
+        status.textContent = d.errorMessage;
+        status.setAttribute("data-state", "error");
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = d.submittingLabel;
+      status.textContent = "";
+      status.removeAttribute("data-state");
+
+      fetch(API_BASE, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error("Request failed");
+          return res.json();
+        })
+        .then(function () {
+          status.textContent = d.successMessage;
+          status.setAttribute("data-state", "ok");
+          form.reset();
+          setTimeout(closeLeadForm, 1800);
+        })
+        .catch(function () {
+          status.textContent = d.errorMessage;
+          status.setAttribute("data-state", "error");
+        })
+        .finally(function () {
+          submitBtn.disabled = false;
+          submitBtn.textContent = d.submitLabel;
+        });
+    });
+  }
+
   function buildNav(content) {
     var navMap = [
       { key: "services", href: "#services", label: "Services" },
@@ -381,7 +560,7 @@
 
     var navCtas = document.getElementById("nav-ctas");
     navCtas.appendChild(el("a", { class: "btn btn-ghost btn-sm", href: content.hero.secondaryCtaHref, text: content.nav.callLabel }));
-    navCtas.appendChild(el("a", { class: "btn btn-primary btn-sm", href: content.hero.primaryCtaHref, id: "book", text: content.nav.bookLabel }));
+    navCtas.appendChild(el("a", { class: "btn btn-primary btn-sm", href: content.hero.primaryCtaHref, id: "book", "data-open-form": "", text: content.nav.bookLabel }));
   }
 
   function buildHero(content) {
@@ -391,7 +570,7 @@
     wrap.appendChild(el("h1", { text: h.headline }));
     wrap.appendChild(el("p", { class: "lede", text: h.lede }));
     var actions = el("div", { class: "hero-actions" }, [
-      el("a", { class: "btn btn-primary", href: h.primaryCtaHref, text: h.primaryCtaLabel }),
+      el("a", { class: "btn btn-primary", href: h.primaryCtaHref, "data-open-form": "", text: h.primaryCtaLabel }),
       el("a", { class: "btn btn-ghost", href: h.secondaryCtaHref, text: h.secondaryCtaLabel })
     ]);
     wrap.appendChild(actions);
@@ -441,7 +620,10 @@
     if (!d || d.visible === false) return null;
     var grid = el("div", { class: "proof-grid" });
     d.items.forEach(function (item) {
-      grid.appendChild(el("a", { class: "proof-card", "data-tone": item.tone, href: item.href, target: "_blank", rel: "noopener" }, [
+      var attrs = { class: "proof-card", "data-tone": item.tone, href: item.href };
+      if (item.service) attrs["data-open-form"] = item.service;
+      else { attrs.target = "_blank"; attrs.rel = "noopener"; }
+      grid.appendChild(el("a", attrs, [
         el("span", { class: "product-voice", text: item.name }),
         el("p", { text: item.description }),
         el("span", { class: "go", text: item.ctaLabel + " →" })
@@ -512,7 +694,7 @@
       el("div", { class: "wrap" }, [
         el("div", { class: "final-cta-inner" }, [
           el("h2", { text: d.heading }),
-          el("a", { class: "btn btn-ghost", href: d.href, text: d.ctaLabel })
+          el("a", { class: "btn btn-ghost", href: d.href, "data-open-form": "", text: d.ctaLabel })
         ])
       ])
     ]);
@@ -527,7 +709,10 @@
 
     var sister = document.getElementById("footer-sister");
     content.sisterProjects.forEach(function (item) {
-      sister.appendChild(el("li", {}, [el("a", { href: item.href, target: "_blank", rel: "noopener", text: item.label })]));
+      var attrs = { href: item.href, text: item.label };
+      if (item.service) attrs["data-open-form"] = item.service;
+      else { attrs.target = "_blank"; attrs.rel = "noopener"; }
+      sister.appendChild(el("li", {}, [el("a", attrs)]));
     });
 
     var social = document.getElementById("footer-social");
@@ -540,7 +725,7 @@
     var h = content.hero;
     var bar = document.getElementById("mobile-cta");
     bar.appendChild(el("a", { class: "btn btn-ghost", href: h.secondaryCtaHref, text: content.nav.callLabel }));
-    bar.appendChild(el("a", { class: "btn btn-primary", href: h.primaryCtaHref, text: content.nav.bookLabel }));
+    bar.appendChild(el("a", { class: "btn btn-primary", href: h.primaryCtaHref, "data-open-form": "", text: content.nav.bookLabel }));
   }
 
   fetch("./content.json", { cache: "no-store" })
@@ -556,6 +741,7 @@
 
       buildFooter(content);
       buildMobileCta(content);
+      buildLeadForm(content);
     })
     .catch(function (err) {
       document.getElementById("hero-content").innerHTML =

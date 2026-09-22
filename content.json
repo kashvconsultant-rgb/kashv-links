@@ -11,7 +11,7 @@
     "headline": "The advisory partner Coimbatore's founders call before the expensive decision.",
     "lede": "We sit with SMEs, startups, and family businesses through business strategy, IT consulting, and vetted local vendor connections — then build the software that keeps the advice from wearing off after month one.",
     "primaryCtaLabel": "Book a free consultation",
-    "primaryCtaHref": "#book",
+    "primaryCtaHref": "https://ig.me/m/kashvconsultant",
     "secondaryCtaLabel": "Call +91 74026 00226",
     "secondaryCtaHref": "tel:+917402600226"
   },
@@ -57,9 +57,9 @@
     "intro": "Four tools born from a client's exact problem, then made available to everyone carrying the same one.",
     "items": [
       { "tone": "contentpilot", "name": "ContentPilot AI", "description": "On-brand marketing content, generated and scheduled on autopilot.", "ctaLabel": "Try it", "href": "https://contentpilotmyc.vercel.app/" },
-      { "tone": "kooli", "name": "Kooli", "description": "Photo-verified site attendance and payroll for civil contractors.", "ctaLabel": "See it", "href": "https://www.instagram.com/kashvconsultant/" },
-      { "tone": "club", "name": "Club Management", "description": "Membership, dues, and events for Lions Clubs & member-run bodies.", "ctaLabel": "Ask us", "href": "https://ig.me/m/kashvconsultant" },
-      { "tone": "tuition", "name": "Tuition Management", "description": "Batch attendance and parent reports for coaching centres.", "ctaLabel": "Ask us", "href": "https://ig.me/m/kashvconsultant" }
+      { "tone": "kooli", "name": "Kooli", "description": "Photo-verified site attendance and payroll for civil contractors.", "ctaLabel": "Enquire", "href": "https://www.instagram.com/kashvconsultant/", "service": "kooli" },
+      { "tone": "club", "name": "Club Management", "description": "Membership, dues, and events for Lions Clubs & member-run bodies.", "ctaLabel": "Ask us", "href": "https://ig.me/m/kashvconsultant", "service": "club" },
+      { "tone": "tuition", "name": "Tuition Management", "description": "Batch attendance and parent reports for coaching centres.", "ctaLabel": "Ask us", "href": "https://ig.me/m/kashvconsultant", "service": "tuition" }
     ]
   },
   "testimonials": {
@@ -88,7 +88,30 @@
     "visible": true,
     "heading": "Ready to make your next decision the easy one?",
     "ctaLabel": "Book a free consultation →",
-    "href": "#book"
+    "href": "https://ig.me/m/kashvconsultant"
+  },
+  "leadForm": {
+    "heading": "Tell us what you need",
+    "subheading": "Share a few details and we'll get back to you within 24 hours.",
+    "fields": {
+      "name": "Full name",
+      "company": "Company name",
+      "phone": "Phone number"
+    },
+    "serviceLabel": "What do you need help with?",
+    "servicePlaceholder": "Select a service",
+    "serviceOptions": [
+      { "value": "consulting", "label": "IT & Business Consulting" },
+      { "value": "club", "label": "Club Management" },
+      { "value": "tuition", "label": "Tuition Management" },
+      { "value": "contentpilot", "label": "ContentPilot AI" },
+      { "value": "kooli", "label": "Kooli — Construction Management App" }
+    ],
+    "submitLabel": "Send",
+    "submittingLabel": "Sending…",
+    "successMessage": "Thanks — we'll be in touch within 24 hours.",
+    "errorMessage": "Something went wrong. Please try again, or call us directly.",
+    "closeLabel": "Close"
   },
   "contact": {
     "addressLine": "Prozone Palms, Saravanampatti, Coimbatore, Tamil Nadu",
@@ -98,9 +121,9 @@
   },
   "sisterProjects": [
     { "label": "ContentPilot AI", "href": "https://contentpilotmyc.vercel.app/" },
-    { "label": "Kooli", "href": "https://www.instagram.com/kashvconsultant/" },
-    { "label": "Club Management", "href": "https://ig.me/m/kashvconsultant" },
-    { "label": "Tuition Management", "href": "https://ig.me/m/kashvconsultant" }
+    { "label": "Kooli", "href": "https://www.instagram.com/kashvconsultant/", "service": "kooli" },
+    { "label": "Club Management", "href": "https://ig.me/m/kashvconsultant", "service": "club" },
+    { "label": "Tuition Management", "href": "https://ig.me/m/kashvconsultant", "service": "tuition" }
   ],
   "social": [
     { "label": "Instagram", "href": "https://www.instagram.com/kashvconsultant/" }

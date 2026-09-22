@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leads — KashV Consultancy</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root {
+    --bg: #12283d; --bg-elevated: #1c3a5c; --ink: #f7f2e7; --ink-muted: #93a5bc;
+    --rule: rgba(247, 242, 231, 0.14); --accent: #ff6b47; --accent-ink: #12283d;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 15px; line-height: 1.5;
+  }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 40px 20px 80px; }
+  h1 { font-size: 1.4rem; margin: 0 0 4px; }
+  p.hint { color: var(--ink-muted); margin: 0 0 24px; font-size: 0.9rem; }
+  .gate { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
+  input[type="password"] {
+    flex: 1; min-width: 220px; font: inherit; color: var(--ink); background: var(--bg-elevated);
+    border: 1px solid var(--rule); border-radius: 10px; padding: 10px 13px;
+  }
+  button {
+    font: inherit; font-weight: 700; cursor: pointer; border: none; border-radius: 999px;
+    background: var(--accent); color: var(--accent-ink); padding: 10px 20px;
+  }
+  button:disabled { opacity: 0.6; cursor: default; }
+  .status { font-size: 0.88rem; margin: 0 0 20px; min-height: 1.2em; }
+  .status[data-state="error"] { color: #ff8a75; }
+  .status[data-state="ok"] { color: var(--ink-muted); }
+  table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+  .del-btn { background: transparent; color: var(--ink-muted); border: 1px solid var(--rule); border-radius: 8px; padding: 5px 10px; font-size: 0.8rem; font-weight: 600; }
+  .del-btn:hover { color: #ff8a75; border-color: #ff8a75; }
+  th { color: var(--ink-muted); font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  tbody tr:hover { background: var(--bg-elevated); }
+  .empty { color: var(--ink-muted); }
+  @media (max-width: 700px) {
+    table, thead, tbody, th, td, tr { display: block; }
+    thead { display: none; }
+    tr { border-bottom: 1px solid var(--rule); padding: 10px 0; }
+    td { border: none; padding: 2px 0; white-space: normal; }
+    td::before { content: attr(data-label); display: inline-block; width: 90px; color: var(--ink-muted); font-size: 0.78rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Leads</h1>
+  <p class="hint">Type the admin password to view submissions from the site's contact form.</p>
+
+  <form class="gate" id="gate-form">
+    <input type="password" id="password" placeholder="Password" autocomplete="current-password">
+    <button type="submit" id="gate-submit">View leads</button>
+  </form>
+
+  <p class="status" id="status"></p>
+
+  <table id="leads-table" hidden>
+    <thead>
+      <tr><th>Received</th><th>Name</th><th>Company</th><th>Phone</th><th>Service</th><th></th></tr>
+    </thead>
+    <tbody id="leads-body"></tbody>
+  </table>
+</div>
+
+<script>
+(function () {
+  var API_BASE = "https://kashv-links.vercel.app/api/leads";
+  var SERVICE_LABELS = {
+    consulting: "IT & Business Consulting",
+    club: "Club Management",
+    tuition: "Tuition Management",
+    contentpilot: "ContentPilot AI",
+    kooli: "Kooli — Construction Management App"
+  };
+
+  var form = document.getElementById("gate-form");
+  var passwordInput = document.getElementById("password");
+  var submitBtn = document.getElementById("gate-submit");
+  var status = document.getElementById("status");
+  var table = document.getElementById("leads-table");
+  var tbody = document.getElementById("leads-body");
+
+  function formatDate(iso) {
+    try {
+      return new Date(iso).toLocaleString();
+    } catch (e) {
+      return iso;
+    }
+  }
+
+  function deleteLead(id, pw) {
+    return fetch(API_BASE + "?id=" + encodeURIComponent(id), {
+      method: "DELETE",
+      headers: { Authorization: "Bearer " + pw }
+    }).then(function (res) {
+      if (!res.ok) throw new Error("delete-failed");
+    });
+  }
+
+  function render(leads, pw) {
+    tbody.innerHTML = "";
+    if (!leads.length) {
+      table.hidden = true;
+      status.textContent = "No leads yet.";
+      status.setAttribute("data-state", "ok");
+      return;
+    }
+    leads.forEach(function (lead) {
+      var tr = document.createElement("tr");
+      var cells = [
+        ["Received", formatDate(lead.createdAt)],
+        ["Name", lead.name || ""],
+        ["Company", lead.company || "—"],
+        ["Phone", lead.phone || ""],
+        ["Service", SERVICE_LABELS[lead.service] || lead.service || ""]
+      ];
+      cells.forEach(function (pair) {
+        var td = document.createElement("td");
+        td.setAttribute("data-label", pair[0]);
+        td.textContent = pair[1];
+        tr.appendChild(td);
+      });
+      var actionTd = document.createElement("td");
+      var delBtn = document.createElement("button");
+      delBtn.type = "button";
+      delBtn.className = "del-btn";
+      delBtn.textContent = "Delete";
+      delBtn.addEventListener("click", function () {
+        if (!confirm("Delete this lead?")) return;
+        delBtn.disabled = true;
+        deleteLead(lead.id, pw)
+          .then(function () { tr.remove(); })
+          .catch(function () {
+            delBtn.disabled = false;
+            alert("Couldn't delete. Try again.");
+          });
+      });
+      actionTd.appendChild(delBtn);
+      tr.appendChild(actionTd);
+      tbody.appendChild(tr);
+    });
+    table.hidden = false;
+    status.textContent = leads.length + " lead(s).";
+    status.setAttribute("data-state", "ok");
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var pw = passwordInput.value;
+    if (!pw) return;
+
+    submitBtn.disabled = true;
+    status.textContent = "Loading…";
+    status.removeAttribute("data-state");
+    table.hidden = true;
+
+    fetch(API_BASE, { headers: { Authorization: "Bearer " + pw } })
+      .then(function (res) {
+        if (res.status === 401) throw new Error("wrong-password");
+        if (!res.ok) throw new Error("request-failed");
+        return res.json();
+      })
+      .then(function (data) {
+        render(data.leads || [], pw);
+      })
+      .catch(function (err) {
+        status.setAttribute("data-state", "error");
+        status.textContent = err.message === "wrong-password"
+          ? "Wrong password."
+          : "Couldn't load leads. Try again.";
+      })
+      .finally(function () {
+        submitBtn.disabled = false;
+      });
+  });
+})();
+</script>
+</body>
+</html>
