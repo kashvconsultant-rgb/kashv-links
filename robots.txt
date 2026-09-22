@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kashvconsultancy.com/sitemap.xml

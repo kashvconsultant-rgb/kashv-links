@@ -1,0 +1,108 @@
+{
+  "meta": {
+    "_note": "Edit any text value below, save, then run `vercel deploy --prod --yes` from this folder. Do not rename any key (the left-hand side in quotes before each colon) or remove the quotes/commas — only change the text on the right. Setting a \"visible\" field to false hides that whole section (and its nav link) with no empty gap; set it back to true to bring it back."
+  },
+  "nav": {
+    "bookLabel": "Book a consultation",
+    "callLabel": "Call us"
+  },
+  "hero": {
+    "eyebrow": "Business & IT Consulting · Coimbatore, Tamil Nadu",
+    "headline": "The advisory partner Coimbatore's founders call before the expensive decision.",
+    "lede": "We sit with SMEs, startups, and family businesses through business strategy, IT consulting, and vetted local vendor connections — then build the software that keeps the advice from wearing off after month one.",
+    "primaryCtaLabel": "Book a free consultation",
+    "primaryCtaHref": "#book",
+    "secondaryCtaLabel": "Call +91 74026 00226",
+    "secondaryCtaHref": "tel:+917402600226"
+  },
+  "trustBar": {
+    "visible": true,
+    "items": [
+      { "value": "Coimbatore", "label": "Based & working on-site" },
+      { "value": "4", "label": "In-house tools built for clients" },
+      { "value": "<24h", "label": "Typical response time" },
+      { "value": "1:1", "label": "Founder-led engagements" }
+    ]
+  },
+  "services": {
+    "visible": true,
+    "eyebrow": "What we do",
+    "heading": "Three ways we get involved",
+    "intro": "Each engagement starts as a conversation about one real decision — not a generic audit.",
+    "items": [
+      {
+        "number": "01 — Strategy",
+        "title": "Business Strategy",
+        "description": "Pricing, expansion, hiring, and go/no-go calls for founders who want a second, sharper opinion before they commit.",
+        "bullets": ["Growth & pricing strategy", "Market entry for Coimbatore & Tamil Nadu", "Operating model reviews"]
+      },
+      {
+        "number": "02 — Technology",
+        "title": "IT Consulting",
+        "description": "The technology call founders can't outsource to a vendor who's also trying to sell them something.",
+        "bullets": ["Software & systems selection", "Build vs. buy decisions", "Digitising manual workflows"]
+      },
+      {
+        "number": "03 — Network",
+        "title": "Vendor Connect",
+        "description": "Years of vetting local suppliers, contractors, and service providers, handed to you instead of relearned from scratch.",
+        "bullets": ["Vetted local vendor introductions", "Contract & scope sanity checks", "Ongoing vendor management support"]
+      }
+    ]
+  },
+  "proof": {
+    "visible": true,
+    "eyebrow": "Proof, not just a pitch",
+    "heading": "We build what we recommend",
+    "intro": "Four tools born from a client's exact problem, then made available to everyone carrying the same one.",
+    "items": [
+      { "tone": "contentpilot", "name": "ContentPilot AI", "description": "On-brand marketing content, generated and scheduled on autopilot.", "ctaLabel": "Try it", "href": "https://contentpilotmyc.vercel.app/" },
+      { "tone": "kooli", "name": "Kooli", "description": "Photo-verified site attendance and payroll for civil contractors.", "ctaLabel": "See it", "href": "https://www.instagram.com/kashvconsultant/" },
+      { "tone": "club", "name": "Club Management", "description": "Membership, dues, and events for Lions Clubs & member-run bodies.", "ctaLabel": "Ask us", "href": "https://ig.me/m/kashvconsultant" },
+      { "tone": "tuition", "name": "Tuition Management", "description": "Batch attendance and parent reports for coaching centres.", "ctaLabel": "Ask us", "href": "https://ig.me/m/kashvconsultant" }
+    ]
+  },
+  "testimonials": {
+    "visible": false,
+    "eyebrow": "Results",
+    "heading": "What clients say after the engagement",
+    "sampleNote": "Sample layout — swap in real, attributed quotes, then set testimonials.visible to true.",
+    "items": [
+      { "quote": "We had three vendor quotes and no way to compare them. KashV sat with us for an afternoon and the decision became obvious.", "attribution": "Owner, textile export unit · Coimbatore", "sample": true },
+      { "quote": "They didn't just recommend software — they scoped it, then handed us Kooli already configured for our sites.", "attribution": "Site manager, civil contracting firm", "sample": true },
+      { "quote": "Straight talk about what our marketing budget should actually go to, not a 40-slide deck.", "attribution": "Founder, D2C brand · Coimbatore", "sample": true }
+    ]
+  },
+  "faq": {
+    "visible": true,
+    "eyebrow": "Before you book",
+    "heading": "Questions founders usually ask",
+    "items": [
+      { "question": "Do you only work with established businesses, or early-stage founders too?", "answer": "Both. Some engagements are a pre-launch sanity check for a first-time founder; others are a pricing or expansion call for a business that's been running for a decade." },
+      { "question": "Can KashV handle both the strategy call and the technology build?", "answer": "Yes — that's the reason the consultancy exists. We advise on the decision, and where the fix is software, our own team builds and hands it over rather than pointing you to a third-party vendor." },
+      { "question": "Do you work with businesses outside Coimbatore?", "answer": "Coimbatore and the wider Tamil Nadu region is where we work on-site; remote strategy and IT consulting engagements are open to founders anywhere." },
+      { "question": "What does the first consultation cost?", "answer": "The first conversation is free — it's how we figure out whether we're actually the right people to help before either of us commits further." }
+    ]
+  },
+  "finalCta": {
+    "visible": true,
+    "heading": "Ready to make your next decision the easy one?",
+    "ctaLabel": "Book a free consultation →",
+    "href": "#book"
+  },
+  "contact": {
+    "addressLine": "Prozone Palms, Saravanampatti, Coimbatore, Tamil Nadu",
+    "phoneHref": "tel:+917402600226",
+    "phoneDisplay": "+91 74026 00226",
+    "email": "kashvconsultant@gmail.com"
+  },
+  "sisterProjects": [
+    { "label": "ContentPilot AI", "href": "https://contentpilotmyc.vercel.app/" },
+    { "label": "Kooli", "href": "https://www.instagram.com/kashvconsultant/" },
+    { "label": "Club Management", "href": "https://ig.me/m/kashvconsultant" },
+    { "label": "Tuition Management", "href": "https://ig.me/m/kashvconsultant" }
+  ],
+  "social": [
+    { "label": "Instagram", "href": "https://www.instagram.com/kashvconsultant/" }
+  ]
+}

@@ -1,16 +1,55 @@
 # kashv-links
 
-KashV Consultancies' homepage — a single static HTML page, no framework, no build
-step, no dependencies. Deployed at **https://kashv-links.vercel.app**, which is also
-the link used in the KashV Instagram bio and shared over WhatsApp.
+KashV Consultancies' homepage — no framework, no build step, no npm dependencies.
+This IS the live site at **https://kashvconsultancy.com** (the apex domain is bound
+to this Vercel project; `kashv-links.vercel.app` also resolves here and is the link
+in the KashV Instagram bio / shared over WhatsApp).
 
 ## Structure
 
-- `index.html` — the entire site. One file: inline `<style>`, inline SVG for the
-  brand mark (a stylised "K" with a coral arrow), no external assets, no webfonts
-  (uses system font stacks so nothing can silently fail to load).
-- No `.git` repo here — deploys go straight from the local folder via Vercel CLI,
-  not from a connected git remote. There is no CI/auto-deploy on push.
+- `index.html` — page shell + inline `<style>` + a small vanilla-JS renderer at the
+  bottom. Contains the SEO-critical `<head>` (title, meta description, canonical,
+  Open Graph/Twitter tags, favicon as an inline SVG data URI, and a `ProfessionalService`
+  JSON-LD block) and a static nav/hero/footer skeleton with empty mount points
+  (`#nav-links`, `#hero-content`, `#section-mount`, `#footer-*`, `#mobile-cta`).
+  No external assets except Google's `og-image.png` reference and (deliberately)
+  no webfonts — system font stacks so nothing can silently fail to load.
+- `content.json` — **every piece of visible wording on the page**: hero copy, trust
+  stats, the three consulting services, the four sister-product cards, testimonials,
+  FAQ, final CTA, and contact/footer info. `index.html`'s bottom `<script>` fetches
+  this at load and builds each section's DOM from it — editing the site's wording is
+  editing this file, never the HTML/CSS.
+  - Each optional section (`trustBar`, `services`, `proof`, `testimonials`, `faq`,
+    `finalCta`) has a `"visible": true/false` flag. `false` means the renderer's
+    builder function for that section returns `null` and nothing is appended to the
+    DOM — no empty section, no leftover gap, and the corresponding nav link is
+    filtered out too (see `buildNav`/`navMap` in `index.html`'s script). The next
+    visible section simply follows immediately in normal document flow.
+  - `testimonials.visible` currently starts `false` (no real client quotes yet —
+    the JSON still holds sample quotes clearly marked `"sample": true`, ready to be
+    replaced with real ones before flipping it to `true`).
+  - The `<head>`'s meta description / OG tags / JSON-LD stay hand-written in
+    `index.html` rather than sourced from `content.json` — those are read by
+    crawlers and link-preview bots that don't reliably execute JavaScript, so they
+    need to exist in the raw HTML regardless of how the visible body is rendered.
+    Keep them roughly in sync with `content.json`'s `hero` copy by hand when either
+    changes meaningfully.
+  - `robots.txt` and `sitemap.xml` sit alongside `index.html` and are served as
+    plain static files by Vercel.
+- No `.git` repo here — wait, there is now (`git init` was run); deploys still go
+  straight from the local folder via Vercel CLI, not triggered by git push. There is
+  no CI/auto-deploy on push — pushing to GitHub and deploying to Vercel are two
+  separate, manual steps.
+
+## Editing content (no code changes needed)
+
+1. Open `content.json`, change the text values (never the keys on the left of each
+   `:`, and keep the quotes/commas intact).
+2. To hide/show an optional section, set its `"visible"` field to `false`/`true`.
+3. From this folder: `vercel deploy --prod --yes`. There is no database or backend
+   — `content.json` is just a static file the browser fetches, so a wording change
+   still requires this one redeploy command to go live (same as any other change to
+   this repo).
 
 ## Deploying
 
