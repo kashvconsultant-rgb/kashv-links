@@ -73,6 +73,37 @@ assuming either one:**
 - No `.git` repo here — wait, there is now (`git init` was run); the live site
   deploys via Render's GitHub auto-deploy on push to `main` (see Deploying below).
 
+## Per-offering pages (SEO landing pages)
+
+Each offering has its own crawlable URL so Google can match specific searches
+("gold scheme software for jewellers", "club management software Lions"...):
+`/consulting/`, `/contentpilot-ai/`, `/kooli/`, `/club-management/`,
+`/tuition-management/`, `/gold-scheme/` (each is `<slug>/index.html`, linked with a
+trailing slash and canonicalised with one so it works on any static host).
+
+- Shared files: `offering.css` (styles) and `offering.js` (renderer + lead form).
+- Every page is a tiny HTML file: a **hand-written static `<head>`** (title,
+  description, canonical, Open Graph, JSON-LD `SoftwareApplication`/`Service` +
+  `BreadcrumbList`), `<body data-offering="<slug>">`, and a no-JS fallback h1/lede.
+  `offering.js` fetches `/content.json` and builds everything visible from
+  `content.offerings[<slug>]` (eyebrow, headline, lede, audience, features, steps,
+  FAQ, related, CTA labels). Wording edits = edit `content.json` only.
+- The static `<head>` copy is NOT read from `content.json` (crawlers/link previews
+  need it in raw HTML). If you change a page's headline/description meaningfully,
+  update its `<head>` by hand too.
+- **Adding a new offering:** (1) add a key under `offerings` in `content.json`;
+  (2) copy an existing `<slug>/index.html`, change slug, title, description,
+  canonical/og:url, JSON-LD and `data-offering`; (3) add it to `proof.items`,
+  `sisterProjects` and `leadForm.serviceOptions` in `content.json`, and the
+  homepage `hasOfferCatalog` JSON-LD in `index.html`; (4) add its URL to
+  `sitemap.xml`; (5) add its `service` value to `VALID_SERVICES` in
+  `api/leads.js` and `SERVICE_LABELS` in `admin.html`, then deploy the API to
+  Vercel (`vercel deploy --prod --yes`) **before** pushing the site, or lead
+  submissions for it will be rejected; (6) add a `--<tone>` colour in
+  `index.html` and `offering.css`.
+- `service` values must match `VALID_SERVICES` in `api/leads.js` (currently
+  consulting, club, tuition, contentpilot, kooli, gold).
+
 ## Editing content (no code changes needed)
 
 1. Open `content.json`, change the text values (never the keys on the left of each
@@ -147,10 +178,12 @@ wiring, this is not guaranteed to stay in sync):
   `contentpilotmyc.vercel.app`, the live deployment of the `ContentPilot`
   monorepo (sibling project, `C:\Users\HP\Documents\ContentPilot`). Not routed
   through the lead form since it's a real, self-serve product.
-- **Kooli**, **Club Management**, **Tuition Management** — all three now open
-  the lead form pre-selected to that service (`content.json`'s `proof.items[].service`
-  / `sisterProjects[].service`, matching the `leadForm.serviceOptions` values),
-  instead of the old Instagram-DM links. Kooli's actual codebase lives at
+- **Kooli**, **Club Management**, **Tuition Management**, **Gold Savings Scheme** —
+  the homepage cards and footer links now go to each tool's own page
+  (`proof.items[].pageHref` / `sisterProjects[].pageHref`, see "Per-offering pages"
+  above); the lead form opens from CTAs on those pages, pre-selected to that
+  service (`offerings.<slug>.service`, matching `leadForm.serviceOptions`).
+  (Earlier the cards opened the form directly, and before that linked to Instagram.) Kooli's actual codebase lives at
   `Desktop/Kashv consultancy/coolie` (repo name "kooli", deployed separately at
   `kashkooli.vercel.app`) but that URL still isn't linked from this page. Club
   and Tuition Management are marketing framings of the same underlying

@@ -41,7 +41,19 @@
     "addressRegion": "Tamil Nadu",
     "addressCountry": "IN"
   },
-  "sameAs": ["https://www.instagram.com/kashvconsultant/"]
+  "sameAs": ["https://www.instagram.com/kashvconsultant/"],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "KashV Consultancy services and software",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Business & IT Consulting", "url": "https://kashvconsultancy.com/consulting/" } },
+      { "@type": "Offer", "itemOffered": { "@type": "SoftwareApplication", "name": "ContentPilot AI", "applicationCategory": "BusinessApplication", "url": "https://kashvconsultancy.com/contentpilot-ai/" } },
+      { "@type": "Offer", "itemOffered": { "@type": "SoftwareApplication", "name": "Kooli", "applicationCategory": "BusinessApplication", "url": "https://kashvconsultancy.com/kooli/" } },
+      { "@type": "Offer", "itemOffered": { "@type": "SoftwareApplication", "name": "Club Management", "applicationCategory": "BusinessApplication", "url": "https://kashvconsultancy.com/club-management/" } },
+      { "@type": "Offer", "itemOffered": { "@type": "SoftwareApplication", "name": "Tuition Management", "applicationCategory": "BusinessApplication", "url": "https://kashvconsultancy.com/tuition-management/" } },
+      { "@type": "Offer", "itemOffered": { "@type": "SoftwareApplication", "name": "Gold Savings Scheme", "applicationCategory": "BusinessApplication", "url": "https://kashvconsultancy.com/gold-scheme/" } }
+    ]
+  }
 }
 </script>
 <!-- TODO once available: add "postalCode" to the address above (Saravanampatti's PIN,
@@ -71,6 +83,8 @@
     --club-ink: #f9eef5;
     --tuition: #2f5233;
     --tuition-ink: #eef6ee;
+    --gold: #8a6416;
+    --gold-ink: #fdf3dc;
 
     --font-display: ui-rounded, "SF Pro Rounded", "Segoe UI Variable Rounded", "Segoe UI", system-ui, sans-serif;
     --font-serif: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
@@ -198,17 +212,18 @@
 
   /* ---------- proof strip (software) ---------- */
   .proof.section-block { border-top: 1px solid var(--rule); }
-  .proof-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .proof-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
   .proof-card { border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 10px; text-decoration: none; min-height: 150px; }
   .proof-card[data-tone="contentpilot"] { background: var(--contentpilot); color: var(--contentpilot-ink); }
   .proof-card[data-tone="kooli"] { background: var(--kooli); color: var(--kooli-ink); }
   .proof-card[data-tone="club"] { background: var(--club); color: var(--club-ink); }
   .proof-card[data-tone="tuition"] { background: var(--tuition); color: var(--tuition-ink); }
+  .proof-card[data-tone="gold"] { background: var(--gold); color: var(--gold-ink); }
   .proof-card .product-voice { font-size: 1.05rem; }
   .proof-card p { margin: 0; font-size: 0.82rem; opacity: 0.88; }
   .proof-card .go { margin-top: auto; font-size: 0.78rem; font-weight: 700; opacity: 0.9; }
-  @media (max-width: 860px) { .proof-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 500px) { .proof-grid { grid-template-columns: 1fr; } }
+  .section-link { display: inline-block; margin-top: 24px; font-weight: 700; font-size: 0.94rem; color: var(--accent); text-decoration: none; }
+  .section-link:hover { text-decoration: underline; }
 
   /* ---------- testimonials ---------- */
   .sample-tag { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-muted); border: 1px dashed var(--rule); border-radius: 999px; padding: 3px 10px; margin-top: 10px; }
@@ -257,7 +272,7 @@
     backdrop-filter: blur(10px); border-top: 1px solid var(--rule); gap: 10px;
   }
   .mobile-cta .btn { flex: 1; justify-content: center; }
-  @media (max-width: 640px) { .mobile-cta { display: flex; } body { padding-bottom: 64px; } }
+  @media (max-width: 640px) { .mobile-cta { display: flex; } body { padding-bottom: 64px; } .nav-ctas { display: none; } }
 
   @media (max-width: 860px) { .nav-links { display: none; } }
 
@@ -610,7 +625,8 @@
           el("h2", { text: d.heading }),
           el("p", { text: d.intro })
         ]),
-        grid
+        grid,
+        d.linkHref ? el("a", { class: "section-link", href: d.linkHref, text: d.linkLabel }) : null
       ])
     ]);
   }
@@ -620,10 +636,7 @@
     if (!d || d.visible === false) return null;
     var grid = el("div", { class: "proof-grid" });
     d.items.forEach(function (item) {
-      var attrs = { class: "proof-card", "data-tone": item.tone, href: item.href };
-      if (item.service) attrs["data-open-form"] = item.service;
-      else { attrs.target = "_blank"; attrs.rel = "noopener"; }
-      grid.appendChild(el("a", attrs, [
+      grid.appendChild(el("a", { class: "proof-card", "data-tone": item.tone, href: item.pageHref }, [
         el("span", { class: "product-voice", text: item.name }),
         el("p", { text: item.description }),
         el("span", { class: "go", text: item.ctaLabel + " →" })
@@ -709,10 +722,7 @@
 
     var sister = document.getElementById("footer-sister");
     content.sisterProjects.forEach(function (item) {
-      var attrs = { href: item.href, text: item.label };
-      if (item.service) attrs["data-open-form"] = item.service;
-      else { attrs.target = "_blank"; attrs.rel = "noopener"; }
-      sister.appendChild(el("li", {}, [el("a", attrs)]));
+      sister.appendChild(el("li", {}, [el("a", { href: item.pageHref, text: item.label })]));
     });
 
     var social = document.getElementById("footer-social");

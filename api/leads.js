@@ -10,7 +10,7 @@ const ALLOWED_ORIGINS = [
   "https://kashv-links.onrender.com"
 ];
 
-const VALID_SERVICES = new Set(["consulting", "club", "tuition", "contentpilot", "kooli"]);
+const VALID_SERVICES = new Set(["consulting", "club", "tuition", "contentpilot", "kooli", "gold"]);
 const LEADS_KEY = "leads";
 const MAX_LEADS_RETURNED = 500;
 

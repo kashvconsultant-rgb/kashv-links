@@ -1,6 +1,6 @@
 {
   "meta": {
-    "_note": "Edit any text value below, save, then run `vercel deploy --prod --yes` from this folder. Do not rename any key (the left-hand side in quotes before each colon) or remove the quotes/commas — only change the text on the right. Setting a \"visible\" field to false hides that whole section (and its nav link) with no empty gap; set it back to true to bring it back."
+    "_note": "Edit any text value below, save, then commit and `git push` to main (Render auto-deploys the site). Do not rename any key (the left-hand side in quotes before each colon) or remove the quotes/commas — only change the text on the right. Setting a \"visible\" field to false hides that whole section (and its nav link) with no empty gap; set it back to true to bring it back."
   },
   "nav": {
     "bookLabel": "Book a consultation",
@@ -19,7 +19,7 @@
     "visible": true,
     "items": [
       { "value": "Coimbatore", "label": "Based & working on-site" },
-      { "value": "4", "label": "In-house tools built for clients" },
+      { "value": "5", "label": "In-house tools built for clients" },
       { "value": "<24h", "label": "Typical response time" },
       { "value": "1:1", "label": "Founder-led engagements" }
     ]
@@ -29,6 +29,8 @@
     "eyebrow": "What we do",
     "heading": "Three ways we get involved",
     "intro": "Each engagement starts as a conversation about one real decision — not a generic audit.",
+    "linkLabel": "See how consulting works with us →",
+    "linkHref": "/consulting/",
     "items": [
       {
         "number": "01 — Strategy",
@@ -54,12 +56,13 @@
     "visible": true,
     "eyebrow": "Proof, not just a pitch",
     "heading": "We build what we recommend",
-    "intro": "Four tools born from a client's exact problem, then made available to everyone carrying the same one.",
+    "intro": "Five tools born from a client's exact problem, then made available to everyone carrying the same one.",
     "items": [
-      { "tone": "contentpilot", "name": "ContentPilot AI", "description": "On-brand marketing content, generated and scheduled on autopilot.", "ctaLabel": "Try it", "href": "https://contentpilotmyc.vercel.app/" },
-      { "tone": "kooli", "name": "Kooli", "description": "Photo-verified site attendance and payroll for civil contractors.", "ctaLabel": "Enquire", "href": "https://www.instagram.com/kashvconsultant/", "service": "kooli" },
-      { "tone": "club", "name": "Club Management", "description": "Membership, dues, and events for Lions Clubs & member-run bodies.", "ctaLabel": "Ask us", "href": "https://ig.me/m/kashvconsultant", "service": "club" },
-      { "tone": "tuition", "name": "Tuition Management", "description": "Batch attendance and parent reports for coaching centres.", "ctaLabel": "Ask us", "href": "https://ig.me/m/kashvconsultant", "service": "tuition" }
+      { "tone": "contentpilot", "name": "ContentPilot AI", "description": "On-brand marketing content, generated and scheduled on autopilot.", "ctaLabel": "Learn more", "pageHref": "/contentpilot-ai/" },
+      { "tone": "kooli", "name": "Kooli", "description": "Photo-verified site attendance and payroll for civil contractors.", "ctaLabel": "Learn more", "pageHref": "/kooli/" },
+      { "tone": "club", "name": "Club Management", "description": "Membership, dues, and events for Lions Clubs & member-run bodies.", "ctaLabel": "Learn more", "pageHref": "/club-management/" },
+      { "tone": "tuition", "name": "Tuition Management", "description": "Batch attendance and parent reports for coaching centres.", "ctaLabel": "Learn more", "pageHref": "/tuition-management/" },
+      { "tone": "gold", "name": "Gold Savings Scheme", "description": "Monthly gold schemes, receipts, and customer passbooks for jewellery shops.", "ctaLabel": "Learn more", "pageHref": "/gold-scheme/" }
     ]
   },
   "testimonials": {
@@ -105,13 +108,176 @@
       { "value": "club", "label": "Club Management" },
       { "value": "tuition", "label": "Tuition Management" },
       { "value": "contentpilot", "label": "ContentPilot AI" },
-      { "value": "kooli", "label": "Kooli — Construction Management App" }
+      { "value": "kooli", "label": "Kooli — Construction Management App" },
+      { "value": "gold", "label": "Gold Savings Scheme — for jewellers" }
     ],
     "submitLabel": "Send",
     "submittingLabel": "Sending…",
     "successMessage": "Thanks — we'll be in touch within 24 hours.",
     "errorMessage": "Something went wrong. Please try again, or call us directly.",
     "closeLabel": "Close"
+  },
+  "offerings": {
+    "consulting": {
+      "name": "Business & IT Consulting",
+      "tone": "consulting",
+      "service": "consulting",
+      "eyebrow": "Consulting · Coimbatore, Tamil Nadu",
+      "headline": "Business and IT consulting for Coimbatore founders and SMEs.",
+      "lede": "Strategy, technology, and vendor choices are the decisions that cost the most to get wrong. We sit with you through the decision, on-site in Coimbatore or remotely, and where the fix is software we can build it ourselves.",
+      "primaryCtaLabel": "Book a free consultation",
+      "audienceHeading": "Who we work with",
+      "audience": ["First-time founders sanity-checking a plan before launch", "Family businesses weighing expansion, pricing, or hiring", "SMEs choosing software or IT vendors", "Startups, SMEs, and family-run businesses across Coimbatore and Tamil Nadu"],
+      "featuresHeading": "Three ways we get involved",
+      "features": [
+        { "title": "Business Strategy", "body": "Pricing, expansion, hiring, and go/no-go calls for founders who want a second, sharper opinion before they commit. Includes growth and pricing strategy, market entry for Coimbatore and Tamil Nadu, and operating model reviews." },
+        { "title": "IT Consulting", "body": "The technology call founders can't outsource to a vendor who is also trying to sell them something. Software and systems selection, build-versus-buy decisions, and digitising manual workflows." },
+        { "title": "Vendor Connect", "body": "Vetted introductions to local suppliers, contractors, and service providers, plus contract and scope sanity checks and ongoing vendor management support." }
+      ],
+      "stepsHeading": "How an engagement works",
+      "steps": [
+        { "title": "A free first conversation", "body": "We work out whether we are the right people to help before either of us commits further." },
+        { "title": "One real decision", "body": "Each engagement is scoped around a specific decision, not a generic audit." },
+        { "title": "A recommendation you can act on", "body": "We stay with you through the decision instead of handing over a deck and leaving." },
+        { "title": "Build or hand over", "body": "Where the fix is software, our own team builds it and hands it over rather than pointing you to a third-party vendor." }
+      ],
+      "faq": [
+        { "question": "Do you work with early-stage founders or only established businesses?", "answer": "Both. Some engagements are a pre-launch sanity check for a first-time founder; others are a pricing or expansion call for a business that has been running for a decade." },
+        { "question": "Do you work with businesses outside Coimbatore?", "answer": "Coimbatore and the wider Tamil Nadu region is where we work on-site; remote strategy and IT consulting engagements are open to founders anywhere." },
+        { "question": "What does the first consultation cost?", "answer": "The first conversation is free." },
+        { "question": "Can you also build the software you recommend?", "answer": "Yes. That is why KashV exists as one company: we advise on the decision, and where the fix is software, we build and hand it over." }
+      ],
+      "related": ["kooli", "club-management", "gold-scheme"]
+    },
+    "contentpilot-ai": {
+      "name": "ContentPilot AI",
+      "tone": "contentpilot",
+      "service": "contentpilot",
+      "eyebrow": "Marketing content · AI",
+      "headline": "ContentPilot AI: on-brand social content, generated and scheduled automatically.",
+      "lede": "We built ContentPilot so our own consulting clients could stop hiring, and firing, marketing freelancers. It creates on-brand posts from templates and schedules them for you.",
+      "primaryCtaLabel": "Enquire about ContentPilot AI",
+      "secondaryCta": { "label": "Open ContentPilot AI", "href": "https://contentpilotmyc.vercel.app/", "external": true },
+      "audienceHeading": "Built for",
+      "audience": ["Small businesses that need a steady flow of social posts", "Founders who don't have a marketing hire", "Consultants and agencies managing several brands"],
+      "featuresHeading": "What it does",
+      "features": [
+        { "title": "AI content generation", "body": "Turn a topic or offer into ready-to-post content without starting from a blank page." },
+        { "title": "Brand-consistent templates", "body": "Posts follow your colours, layout and tone, so everything looks like it came from one brand." },
+        { "title": "Automatic scheduling", "body": "Queue posts ahead of time so your feed stays active without daily effort." }
+      ],
+      "faq": [
+        { "question": "Is ContentPilot AI live?", "answer": "Yes. It is a working product you can open and try today." },
+        { "question": "Can it follow my brand?", "answer": "Yes. Templates keep posts consistent with your brand instead of generic." }
+      ],
+      "related": ["consulting", "kooli", "club-management"]
+    },
+    "kooli": {
+      "name": "Kooli",
+      "tone": "kooli",
+      "service": "kooli",
+      "eyebrow": "Workforce operations · Construction",
+      "headline": "Kooli: site attendance and weekly payroll for civil contractors, verified by photo.",
+      "lede": "Built for contractors juggling day labourers across multiple sites. Supervisors log attendance with a photo, and payroll adds itself up correctly every week.",
+      "primaryCtaLabel": "Enquire about Kooli",
+      "audienceHeading": "Built for",
+      "audience": ["Civil and construction contractors running more than one site", "Site supervisors recording daily labour attendance", "Owners who pay workers weekly"],
+      "featuresHeading": "What it does",
+      "features": [
+        { "title": "Photo-verified attendance", "body": "Supervisors log attendance and work hours with a photo, so the record is backed by evidence." },
+        { "title": "Multi-project payroll", "body": "Weekly worker payroll is calculated across all your projects instead of being reconciled by hand." },
+        { "title": "Works offline on-site", "body": "Supervisors can keep recording attendance where the signal is poor, and it syncs when they are back online." },
+        { "title": "Installs like an app", "body": "Kooli is a web app that installs on a phone's home screen, so there is nothing to download from a store." }
+      ],
+      "faq": [
+        { "question": "Does it work without internet on site?", "answer": "Yes. The supervisor flow is built offline-first, so attendance can be recorded without a connection." },
+        { "question": "Who is it for?", "answer": "Civil contractors who track day labourers across sites and pay them weekly." }
+      ],
+      "related": ["consulting", "club-management", "tuition-management"]
+    },
+    "club-management": {
+      "name": "Club Management",
+      "tone": "club",
+      "service": "club",
+      "eyebrow": "Community & club operations",
+      "headline": "Club management software for Lions Clubs and member-run organisations.",
+      "lede": "Membership, dues, and events, sorted. Built for Lions Clubs, sports clubs, and other member-run bodies juggling subscriptions, treasurers, and events across spreadsheets and group chats.",
+      "primaryCtaLabel": "Enquire about Club Management",
+      "audienceHeading": "Built for",
+      "audience": ["Lions Clubs and other service clubs", "Sports clubs and associations", "Treasurers and secretaries who chase dues by hand"],
+      "featuresHeading": "What it does",
+      "features": [
+        { "title": "Members and dues", "body": "Keep a member register, set subscription plans, record payments, issue receipts, and see outstanding dues and defaulters at a glance." },
+        { "title": "UPI payments and reminders", "body": "Members can pay by UPI, and the treasurer can send payment reminders instead of chasing people individually." },
+        { "title": "Projects, expenses, and finance reports", "body": "Track projects and expenses, print project reports, and export the annual finance report for your CA." },
+        { "title": "Events, RSVPs, and notices", "body": "Invite members to events, capture RSVPs and attendance, and send notices with push notifications." },
+        { "title": "Role-based access", "body": "Officers and staff see what their role needs, and each club gets its own branding." }
+      ],
+      "faq": [
+        { "question": "Is it only for Lions Clubs?", "answer": "It is built around Lions Clubs, and it also suits sports clubs and other member-run organisations." },
+        { "question": "Can we import our existing members?", "answer": "Yes. Members can be imported instead of typed in one by one." },
+        { "question": "Can members pay dues online?", "answer": "Yes, by UPI, with receipts recorded against their account." }
+      ],
+      "related": ["tuition-management", "gold-scheme", "consulting"]
+    },
+    "tuition-management": {
+      "name": "Tuition Management",
+      "tone": "tuition",
+      "service": "tuition",
+      "eyebrow": "Coaching & classes",
+      "headline": "Tuition centre management: batch attendance and weekly parent reports.",
+      "lede": "Built for tuition centres and coaching classes running students across grades and batches. Attendance, test scores, and a weekly summary parents actually read.",
+      "primaryCtaLabel": "Enquire about Tuition Management",
+      "audienceHeading": "Built for",
+      "audience": ["Tuition centres and coaching classes", "Teachers running several batches", "Centres that want parents kept informed every week"],
+      "featuresHeading": "What it does",
+      "features": [
+        { "title": "Batch-wise attendance", "body": "Mark attendance for each batch and grade in one place." },
+        { "title": "Test scores and remarks", "body": "Record test scores and teacher remarks against each student." },
+        { "title": "Weekly parent reports", "body": "Parents get a weekly summary of attendance and progress, without teachers writing each one by hand." }
+      ],
+      "faq": [
+        { "question": "Can we run several batches?", "answer": "Yes. Attendance is tracked batch by batch, across grades." },
+        { "question": "What do parents receive?", "answer": "A weekly summary of their child's attendance, scores and remarks." }
+      ],
+      "related": ["club-management", "kooli", "consulting"]
+    },
+    "gold-scheme": {
+      "name": "Gold Savings Scheme",
+      "tone": "gold",
+      "service": "gold",
+      "eyebrow": "Jewellery shops · Savings schemes",
+      "headline": "Gold savings scheme software for jewellery shops: run 11+1 schemes without the paper register.",
+      "lede": "Run monthly gold savings schemes for your jewellery shop: 11 + 1, 12 + bonus, flexible pay-as-you-wish, or gold-weight accumulation. Record every payment with a receipt, let customers follow their savings on their phone, and settle each account with a signed statement.",
+      "primaryCtaLabel": "Book a Gold Scheme demo",
+      "audienceHeading": "Built for",
+      "audience": ["Jewellery shop owners running monthly savings schemes", "Counter and field staff who collect instalments", "Customers who want to see their savings on their phone"],
+      "featuresHeading": "What it does",
+      "features": [
+        { "title": "Design any scheme", "body": "Start from presets like 11 + 1, 12 + 7% bonus, 10 + 2, or flexible gold weight, then adjust bonus, due day, grace days, late rules, and early-closure rules. A preview shows what a customer ends up with." },
+        { "title": "Daily gold rate with a typo guard", "body": "The owner enters the 24K, 22K and 18K rates each morning. A rate far from the last one asks for confirmation, and once a payment has used a rate it is locked so a customer's grams never change." },
+        { "title": "Receipts and payments", "body": "Record cash, card, UPI or bank payments and print numbered receipts. A wrong entry can be cancelled with a reason and stays on file marked cancelled." },
+        { "title": "UPI approvals", "body": "Customers pay from their passbook and enter the UTR number. Staff check it against the bank and approve or reject with a reason the customer can see." },
+        { "title": "Customer passbook on their phone", "body": "Customers see their own savings, pay by UPI, and get reminders, so fewer people ask at the counter." },
+        { "title": "Settlement statement at maturity", "body": "The app works out the bonus, waivers and the jewellery value or grams, shows every figure first, and prints a statement for the customer to sign." },
+        { "title": "Overdue tracking and reports", "body": "See late, overdue and lapse-due accounts, follow up with the defaulters report, and export reports to CSV." }
+      ],
+      "stepsHeading": "How a scheme runs",
+      "steps": [
+        { "title": "Enter today's rate", "body": "The owner sets the gold rate for each purity every morning." },
+        { "title": "Design the scheme once", "body": "For example a Swarna 11 + 1 scheme, with its bonus and late rules." },
+        { "title": "Enrol customers", "body": "Each account gets a number like GS-0001 and a month-by-month schedule, with the scheme's terms locked in for that customer." },
+        { "title": "Collect every month", "body": "Customers pay at the counter, to a field collector, or by UPI, and every payment gets a receipt." },
+        { "title": "Settle at maturity", "body": "The owner reviews the bonus and jewellery value, confirms, and prints the statement to sign." }
+      ],
+      "faq": [
+        { "question": "Which scheme types are supported?", "answer": "11 + 1, 12 + bonus, 10 + 2, flexible pay-as-you-wish schemes, and gold-weight accumulation, where each payment becomes grams at that day's rate." },
+        { "question": "Can we move from a paper register?", "answer": "Yes. Set a start date in the past, up to about a year, and record the earlier payments with the dates they were paid." },
+        { "question": "Who sets up our shop?", "answer": "KashV creates the shop and the owner's login. The owner then creates staff logins, and owner or staff create customer logins." },
+        { "question": "Do you store customers' Aadhaar or PAN numbers?", "answer": "No. For ID proof you record the type and only the last 4 digits." }
+      ],
+      "related": ["club-management", "consulting", "kooli"]
+    }
   },
   "contact": {
     "addressLine": "Prozone Palms, Saravanampatti, Coimbatore, Tamil Nadu",
@@ -120,10 +286,11 @@
     "email": "kashvconsultant@gmail.com"
   },
   "sisterProjects": [
-    { "label": "ContentPilot AI", "href": "https://contentpilotmyc.vercel.app/" },
-    { "label": "Kooli", "href": "https://www.instagram.com/kashvconsultant/", "service": "kooli" },
-    { "label": "Club Management", "href": "https://ig.me/m/kashvconsultant", "service": "club" },
-    { "label": "Tuition Management", "href": "https://ig.me/m/kashvconsultant", "service": "tuition" }
+    { "label": "ContentPilot AI", "pageHref": "/contentpilot-ai/" },
+    { "label": "Kooli", "pageHref": "/kooli/" },
+    { "label": "Club Management", "pageHref": "/club-management/" },
+    { "label": "Tuition Management", "pageHref": "/tuition-management/" },
+    { "label": "Gold Savings Scheme", "pageHref": "/gold-scheme/" }
   ],
   "social": [
     { "label": "Instagram", "href": "https://www.instagram.com/kashvconsultant/" }
