@@ -62,7 +62,7 @@
 
   <table id="leads-table" hidden>
     <thead>
-      <tr><th>Received</th><th>Name</th><th>Company</th><th>Phone</th><th>Service</th><th></th></tr>
+      <tr><th>Received</th><th>Name</th><th>Company</th><th>Phone</th><th>Service</th><th>Source</th><th></th></tr>
     </thead>
     <tbody id="leads-body"></tbody>
   </table>
@@ -119,7 +119,8 @@
         ["Name", lead.name || ""],
         ["Company", lead.company || "—"],
         ["Phone", lead.phone || ""],
-        ["Service", SERVICE_LABELS[lead.service] || lead.service || ""]
+        ["Service", SERVICE_LABELS[lead.service] || lead.service || ""],
+        ["Source", lead.source === "chatbot" ? "Chatbot" : "Form"]
       ];
       cells.forEach(function (pair) {
         var td = document.createElement("td");

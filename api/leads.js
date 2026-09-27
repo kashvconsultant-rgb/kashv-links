@@ -11,6 +11,7 @@ const ALLOWED_ORIGINS = [
 ];
 
 const VALID_SERVICES = new Set(["consulting", "club", "tuition", "contentpilot", "kooli", "gold"]);
+const VALID_SOURCES = new Set(["form", "chatbot"]);
 const LEADS_KEY = "leads";
 const MAX_LEADS_RETURNED = 500;
 
@@ -67,6 +68,8 @@ module.exports = async (req, res) => {
     const company = String(body.company || "").trim().slice(0, 200);
     const phone = String(body.phone || "").trim().slice(0, 40);
     const service = String(body.service || "").trim();
+    const sourceRaw = String(body.source || "form").trim();
+    const source = VALID_SOURCES.has(sourceRaw) ? sourceRaw : "form";
 
     if (!name || !phone || !VALID_SERVICES.has(service)) {
       res.status(400).json({ ok: false, error: "Missing or invalid fields" });
@@ -79,6 +82,7 @@ module.exports = async (req, res) => {
       company: company,
       phone: phone,
       service: service,
+      source: source,
       createdAt: new Date().toISOString()
     };
 

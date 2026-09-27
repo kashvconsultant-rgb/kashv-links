@@ -279,6 +279,28 @@
       "related": ["club-management", "consulting", "kooli"]
     }
   },
+  "chatbot": {
+    "launcherLabel": "Chat with us",
+    "nudgeText": "Have a question? Chat with us →",
+    "title": "KashV Assistant",
+    "greeting": "Hi! I'm the KashV assistant. What are you looking for?",
+    "greetingTa": "வணக்கம்! நான் KashV உதவியாளர். உங்களுக்கு என்ன தேவை?",
+    "questionOption": "I just have a question",
+    "questionResponse": "No problem — call +91 74026 00226 or email kashvconsultant@gmail.com and we'll help directly. Or pick a service above and we'll call you instead.",
+    "askName": "Great choice. What's your name?",
+    "askPhone": "Thanks, {name}! What's the best phone number to reach you on?",
+    "askCompany": "Last one — what's your company or shop called? (optional)",
+    "skipLabel": "Skip",
+    "sendLabel": "Send",
+    "invalidPhone": "That doesn't look like a valid phone number — mind trying again?",
+    "submittingLabel": "Sending…",
+    "successMessage": "Thanks, {name} — we'll be in touch within 24 hours.",
+    "errorMessage": "Something went wrong sending that. Please try again, or call us directly.",
+    "restartLabel": "Ask something else",
+    "closeLabel": "Close chat",
+    "muteLabel": "Mute voice welcome",
+    "unmuteLabel": "Unmute voice welcome"
+  },
   "contact": {
     "addressLine": "Prozone Palms, Saravanampatti, Coimbatore, Tamil Nadu",
     "phoneHref": "tel:+917402600226",

@@ -104,6 +104,43 @@ trailing slash and canonicalised with one so it works on any static host).
 - `service` values must match `VALID_SERVICES` in `api/leads.js` (currently
   consulting, club, tuition, contentpilot, kooli, gold).
 
+## Chat widget (lead-capture chatbot)
+
+`chatbot.css` + `chatbot.js`, loaded on every page (`index.html` and all six
+`<offering>/index.html`). Scripted, not AI — a fixed question flow (pick a
+service → name → phone → optional company) that posts to the same
+`/api/leads` endpoint the modal form uses, with `source: "chatbot"` added so
+`admin.html`'s Source column can tell the two apart. All wording is in
+`content.json`'s `chatbot` block; the service list is `leadForm.serviceOptions`
+(not duplicated). Conversation state lives in memory only — it survives
+closing/reopening the panel but resets on a page reload or navigation.
+
+**Voice welcome:** the first time a visitor opens the chat in a tab, the
+widget calls `GET /api/geo` — a tiny Vercel function that reads Vercel's own
+`x-vercel-ip-country` / `x-vercel-ip-country-region` request headers (no
+IP-lookup service, no config) — and speaks the greeting with the browser's
+built-in `speechSynthesis`: Tamil (`content.chatbot.greetingTa`) if the
+visitor resolves to `country: "IN"`, `region: "TN"` **and** the browser/OS
+actually has a Tamil voice installed, English otherwise. If either check
+fails it falls back to English text *and* speech together (never Tamil text
+with silent/wrong-language audio). Geo headers are approximate (VPNs, corporate
+proxies, `localhost` in local testing all resolve wrong) and speech synthesis
+quietly no-ops on unsupported browsers — this is a nice-to-have, not
+something to build other logic on top of. A header speaker icon lets a
+visitor mute it (persisted per-browser in `localStorage`); it never repeats
+within the same tab session once played.
+
+**Extending it:** only the greeting is bilingual today — the rest of the
+scripted flow (service names, name/phone/company prompts) is English only. To
+add another region/language, extend `resolveGreetingLanguage`'s check in
+`chatbot.js`, add the greeting text as `content.chatbot.greeting<Lang>`, and
+decide the same fallback behaviour as Tamil (whole-greeting fallback to
+English, not a text/voice language mismatch).
+
+To add a new lead-form field to the chatbot flow, mirror the pattern of
+`promptName`/`promptPhone`/`promptCompany` in `chatbot.js` and add its prompt
+copy to `content.json`'s `chatbot` block.
+
 ## Editing content (no code changes needed)
 
 1. Open `content.json`, change the text values (never the keys on the left of each
@@ -121,7 +158,7 @@ trailing slash and canonicalised with one so it works on any static host).
 (`kashvconsultant-rgb/kashv-links`). Render auto-deploys from there — no manual
 step, no `vercel` command involved.
 
-**The leads API** (`api/leads.js`), or anything else meant to run on Vercel:
+**The API** (`api/leads.js`, `api/geo.js`), or anything else meant to run on Vercel:
 
 ```bash
 vercel deploy --prod --yes
