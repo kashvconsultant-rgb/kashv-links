@@ -78,7 +78,7 @@ assuming either one:**
 Each offering has its own crawlable URL so Google can match specific searches
 ("gold scheme software for jewellers", "club management software Lions"...):
 `/consulting/`, `/contentpilot-ai/`, `/kooli/`, `/club-management/`,
-`/tuition-management/`, `/gold-scheme/` (each is `<slug>/index.html`, linked with a
+`/tuition-management/`, `/gold-scheme/`, `/tournament-management/` (each is `<slug>/index.html`, linked with a
 trailing slash and canonicalised with one so it works on any static host).
 
 - Shared files: `offering.css` (styles) and `offering.js` (renderer + lead form).
@@ -101,8 +101,12 @@ trailing slash and canonicalised with one so it works on any static host).
   Vercel (`vercel deploy --prod --yes`) **before** pushing the site, or lead
   submissions for it will be rejected; (6) add a `--<tone>` colour in
   `index.html` and `offering.css`.
+- Optional blocks an offering can add in `content.json` (rendered by `offering.js`,
+  ignored by pages that omit them): `screens` (phone screenshot strip, images in
+  `<slug>/img/`), `story` (founder's "why we built it" note, `eyebrow`/`heading`/
+  `paragraphs`/`signature`), and `sports` (chip list). Used by Tournament Management.
 - `service` values must match `VALID_SERVICES` in `api/leads.js` (currently
-  consulting, club, tuition, contentpilot, kooli, gold).
+  consulting, club, tuition, contentpilot, kooli, gold, tournament).
 
 ## Chat widget (lead-capture chatbot)
 

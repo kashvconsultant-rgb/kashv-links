@@ -19,7 +19,7 @@
     "visible": true,
     "items": [
       { "value": "Coimbatore", "label": "Based & working on-site" },
-      { "value": "5", "label": "In-house tools built for clients" },
+      { "value": "6", "label": "In-house tools built for clients" },
       { "value": "<24h", "label": "Typical response time" },
       { "value": "1:1", "label": "Founder-led engagements" }
     ]
@@ -56,13 +56,14 @@
     "visible": true,
     "eyebrow": "Proof, not just a pitch",
     "heading": "We build what we recommend",
-    "intro": "Five tools born from a client's exact problem, then made available to everyone carrying the same one.",
+    "intro": "Six tools born from a client's exact problem, then made available to everyone carrying the same one.",
     "items": [
       { "tone": "contentpilot", "name": "ContentPilot AI", "description": "On-brand marketing content, generated and scheduled on autopilot.", "ctaLabel": "Learn more", "pageHref": "/contentpilot-ai/" },
       { "tone": "kooli", "name": "Kooli", "description": "Photo-verified site attendance and payroll for civil contractors.", "ctaLabel": "Learn more", "pageHref": "/kooli/" },
       { "tone": "club", "name": "Club Management", "description": "Membership, dues, and events for Lions Clubs & member-run bodies.", "ctaLabel": "Learn more", "pageHref": "/club-management/" },
       { "tone": "tuition", "name": "Tuition Management", "description": "Batch attendance and parent reports for coaching centres.", "ctaLabel": "Learn more", "pageHref": "/tuition-management/" },
-      { "tone": "gold", "name": "Gold Savings Scheme", "description": "Monthly gold schemes, receipts, and customer passbooks for jewellery shops.", "ctaLabel": "Learn more", "pageHref": "/gold-scheme/" }
+      { "tone": "gold", "name": "Gold Savings Scheme", "description": "Monthly gold schemes, receipts, and customer passbooks for jewellery shops.", "ctaLabel": "Learn more", "pageHref": "/gold-scheme/" },
+      { "tone": "tournament", "name": "Tournament Management", "description": "Registration, UPI payments, draws and live scores for badminton and pickleball tournaments.", "ctaLabel": "Learn more", "pageHref": "/tournament-management/" }
     ]
   },
   "testimonials": {
@@ -109,7 +110,8 @@
       { "value": "tuition", "label": "Tuition Management" },
       { "value": "contentpilot", "label": "ContentPilot AI" },
       { "value": "kooli", "label": "Kooli — Construction Management App" },
-      { "value": "gold", "label": "Gold Savings Scheme — for jewellers" }
+      { "value": "gold", "label": "Gold Savings Scheme — for jewellers" },
+      { "value": "tournament", "label": "Tournament Management — badminton & pickleball" }
     ],
     "submitLabel": "Send",
     "submittingLabel": "Sending…",
@@ -218,7 +220,7 @@
         { "question": "Can we import our existing members?", "answer": "Yes. Members can be imported instead of typed in one by one." },
         { "question": "Can members pay dues online?", "answer": "Yes, by UPI, with receipts recorded against their account." }
       ],
-      "related": ["tuition-management", "gold-scheme", "consulting"]
+      "related": ["tuition-management", "tournament-management", "consulting"]
     },
     "tuition-management": {
       "name": "Tuition Management",
@@ -240,7 +242,7 @@
         { "question": "Can we run several batches?", "answer": "Yes. Attendance is tracked batch by batch, across grades." },
         { "question": "What do parents receive?", "answer": "A weekly summary of their child's attendance, scores and remarks." }
       ],
-      "related": ["club-management", "kooli", "consulting"]
+      "related": ["club-management", "tournament-management", "consulting"]
     },
     "gold-scheme": {
       "name": "Gold Savings Scheme",
@@ -277,6 +279,62 @@
         { "question": "Do you store customers' Aadhaar or PAN numbers?", "answer": "No. For ID proof you record the type and only the last 4 digits." }
       ],
       "related": ["club-management", "consulting", "kooli"]
+    },
+    "tournament-management": {
+      "name": "Tournament Management",
+      "tone": "tournament",
+      "service": "tournament",
+      "eyebrow": "Badminton & Pickleball · Tournament organisers",
+      "headline": "Tournament management software for badminton and pickleball: run the whole event from your phone.",
+      "lede": "From registration to winners. Players register and pay by UPI from one shareable link, you make a fair draw in seconds, referees score on their phones, and every team gets a \"You're up!\" alert when it's their turn. Better fixtures, faster scores, happier players.",
+      "primaryCtaLabel": "Book a Tournament demo",
+      "screensHeading": "The app on a phone",
+      "screens": [
+        { "src": "/tournament-management/img/register.webp", "alt": "Tournament page showing the entry fee, closing time and a Register your team button", "caption": "Register & pay" },
+        { "src": "/tournament-management/img/fixtures.webp", "alt": "Public fixtures page with semi finals and finals for each category", "caption": "Live fixtures" },
+        { "src": "/tournament-management/img/scoring.webp", "alt": "Referee scoring screen with a plus one button for each team", "caption": "Score from the court" },
+        { "src": "/tournament-management/img/winners.webp", "alt": "Winner poster card listing winner, runner and semi finalists with prize money", "caption": "Winner poster" }
+      ],
+      "audienceHeading": "Built for",
+      "audience": ["Clubs, academies and associations organising tournaments", "Organisers who want matches to start on time", "Referees and scorers keeping score on a phone", "Players who want to know their court and time without chasing anyone"],
+      "featuresHeading": "What it does",
+      "features": [
+        { "title": "Registration and UPI payments", "body": "Players register their team and pay the entry fee by UPI from one shareable link. A repeated UTR number is blocked, and you approve each payment in one tap or mark it paid in cash." },
+        { "title": "Fewer entry mistakes", "body": "The app warns you about odd or shared mobile numbers and players already in another team in the same category. Tick off age proof as players show it." },
+        { "title": "Fair draws and fixtures", "body": "Teams are drawn at random with byes added automatically, for as many categories as you run. Already made the draw elsewhere? Enter those fixtures yourself instead. Players follow the public fixtures page." },
+        { "title": "Match queue and courts board", "body": "Give matches a queue number and a court, and see every court at a glance: what is in play, the live score, who is refereeing, or free. A warning stops one player being sent to two courts at once." },
+        { "title": "Live scoring from any phone", "body": "Each referee gets a private link and scores with a tap per point, with undo and a manual correction. Many courts run in parallel, as single set or best of 3." },
+        { "title": "\"You're up!\" alerts", "body": "Teams get a notification when their match is called, the next two matches get \"You're up soon\", and with auto-announce the next match is called as soon as a court frees up." },
+        { "title": "Reports, winners and your own app", "body": "Download entries, results and payouts as CSV or PDF, and share on WhatsApp. Closing the event publishes the winners page and poster cards. Every tournament is its own installable phone app with your name and logo." }
+      ],
+      "story": {
+        "eyebrow": "Why we built it",
+        "heading": "Built by a player who was tired of waiting.",
+        "paragraphs": ["Sport has always been a big part of our founder's life. He is a regular on the tournament circuit and a frequent winner.", "But the same frustrations kept showing up: tournaments running late and no organised way of running the day. Players were left waiting around when they should have been playing.", "So he built the tournament app he wished every organiser had: registration and payments, a fair draw, live scores on every court and an alert when it's your turn. The day runs clean, and it runs on time."],
+        "signature": "Founder, KashV Consultancy"
+      },
+      "stepsHeading": "How a tournament runs",
+      "steps": [
+        { "title": "Set up the tournament", "body": "Name, date, fee, UPI ID, categories, prizes and logo are all set inside the app, and the tournament gets its own phone app." },
+        { "title": "Share one link", "body": "Players register their team and pay by UPI from the same link." },
+        { "title": "Approve and draw", "body": "Check each payment, close registration, then make the draw for every category." },
+        { "title": "Run the day", "body": "Queue the matches and call them to courts. Referees score on their phones and teams get alerts." },
+        { "title": "Close and announce winners", "body": "One tap locks the results, publishes the winners page and poster cards, and congratulates every placed team." }
+      ],
+      "sportsHeading": "Badminton and pickleball",
+      "sports": [
+        { "name": "Badminton", "detail": "single set to 30 or 21, or best of 3 sets to 21" },
+        { "name": "Pickleball", "detail": "games to 11, 15 or 21 (win by 2), or best of 3 games" }
+      ],
+      "faq": [
+        { "question": "Which sports does it support?", "answer": "Badminton and pickleball. You pick the sport for each tournament and the scoring format for early rounds and for semi finals and finals." },
+        { "question": "Do players have to install anything?", "answer": "No. They open your tournament link on their phone to register, pay and follow fixtures. They can add it to their home screen and turn on alerts to get \"You're up!\" notifications." },
+        { "question": "How do I know a player has really paid?", "answer": "The player pays by UPI and enters the UTR number. You check it against your bank or UPI app, then approve it or reject it with a reason the player can see. The same UTR can't be used twice." },
+        { "question": "Can we use a draw we already made?", "answer": "Yes. Enter your fixtures yourself instead of using the app's draw, with byes where you need them." },
+        { "question": "Can one account run several tournaments?", "answer": "Yes. Each tournament has its own name, logo, fee and UPI ID, with up to three organisers who can manage only their own tournament." }
+      ],
+      "related": ["club-management", "tuition-management", "consulting"],
+      "finalHeading": "Ready to run your next tournament smarter?"
     }
   },
   "chatbot": {
@@ -312,7 +370,8 @@
     { "label": "Kooli", "pageHref": "/kooli/" },
     { "label": "Club Management", "pageHref": "/club-management/" },
     { "label": "Tuition Management", "pageHref": "/tuition-management/" },
-    { "label": "Gold Savings Scheme", "pageHref": "/gold-scheme/" }
+    { "label": "Gold Savings Scheme", "pageHref": "/gold-scheme/" },
+    { "label": "Tournament Management", "pageHref": "/tournament-management/" }
   ],
   "social": [
     { "label": "Instagram", "href": "https://www.instagram.com/kashvconsultant/" }

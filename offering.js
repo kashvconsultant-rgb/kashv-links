@@ -5,7 +5,7 @@
 (function () {
   var TONE_VARS = {
     consulting: "var(--consulting)", contentpilot: "var(--contentpilot)", kooli: "var(--kooli)",
-    club: "var(--club)", tuition: "var(--tuition)", gold: "var(--gold)"
+    club: "var(--club)", tuition: "var(--tuition)", gold: "var(--gold)", tournament: "var(--tournament)"
   };
   var API_BASE = "https://kashv-links.vercel.app/api/leads";
 
@@ -70,6 +70,37 @@
       el("p", { class: "lede", text: o.lede }),
       actions
     ])]);
+  }
+
+  function buildScreens(o) {
+    if (!o.screens || !o.screens.length) return null;
+    var row = el("div", { class: "screens-row" });
+    o.screens.forEach(function (s) {
+      row.appendChild(el("figure", { class: "screen" }, [
+        el("img", { src: s.src, alt: s.alt, width: s.width || 618, height: s.height || 610, loading: "lazy" }),
+        el("figcaption", { text: s.caption })
+      ]));
+    });
+    var node = el("section", { class: "screens", "aria-label": o.screensHeading || "App screens" }, [el("div", { class: "wrap" }, [row])]);
+    return node;
+  }
+
+  function buildSports(o) {
+    if (!o.sports || !o.sports.length) return null;
+    var list = el("ul", { class: "chips sports" });
+    o.sports.forEach(function (s) {
+      list.appendChild(el("li", {}, [el("strong", { text: s.name }), document.createTextNode(" · " + s.detail)]));
+    });
+    return section("audience", "sports", [el("h2", { text: o.sportsHeading || "Sports supported" })], list);
+  }
+
+  function buildStory(o) {
+    var s = o.story;
+    if (!s || !s.paragraphs || !s.paragraphs.length) return null;
+    var body = el("div", { class: "story-body" });
+    s.paragraphs.forEach(function (p) { body.appendChild(el("p", { text: p })); });
+    if (s.signature) body.appendChild(el("p", { class: "story-sign", text: s.signature }));
+    return section("story", "story", [el("span", { class: "eyebrow", text: s.eyebrow }), el("h2", { text: s.heading })], body);
   }
 
   function buildAudience(o) {
@@ -258,7 +289,7 @@
       app.innerHTML = "";
       document.body.insertBefore(buildChrome(content, o), app);
       app.appendChild(buildHero(o));
-      [buildAudience(o), buildFeatures(o), buildSteps(o), buildFaq(o), buildRelated(content, o), buildFinalCta(content, o)]
+      [buildScreens(o), buildAudience(o), buildFeatures(o), buildStory(o), buildSteps(o), buildSports(o), buildFaq(o), buildRelated(content, o), buildFinalCta(content, o)]
         .forEach(function (node) { if (node) app.appendChild(node); });
       document.body.appendChild(buildFooter(content));
       document.body.appendChild(buildMobileCta(content, o));

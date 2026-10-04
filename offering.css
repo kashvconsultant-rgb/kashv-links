@@ -21,6 +21,8 @@
   --tuition-ink: #eef6ee;
   --gold: #8a6416;
   --gold-ink: #fdf3dc;
+  --tournament: #0e6377;
+  --tournament-ink: #e6f6fa;
 
   --font-display: ui-rounded, "SF Pro Rounded", "Segoe UI Variable Rounded", "Segoe UI", system-ui, sans-serif;
   --font-serif: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
@@ -110,6 +112,24 @@ h1, h2, h3 { font-family: var(--font-serif); font-weight: 700; text-wrap: balanc
 .faq-item[open] summary .plus { transform: rotate(45deg); }
 .faq-item p { margin: 0; padding: 0 22px 20px; color: var(--ink-muted); font-size: 0.92rem; max-width: 62ch; }
 
+/* app screenshots (optional per offering) */
+.screens { padding: 0 0 clamp(40px, 6vw, 72px); }
+.screens-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.screen { margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.screen img { width: 100%; height: auto; display: block; border-radius: 18px; border: 1px solid var(--rule); background: #0b0b0b; box-shadow: 0 18px 40px -26px rgba(0, 0, 0, 0.7); }
+.screen figcaption { font-size: 0.82rem; font-weight: 700; color: var(--ink-muted); text-align: center; }
+@media (max-width: 860px) {
+  .screens-row { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px; padding-bottom: 8px; margin: 0 calc(-1 * clamp(20px, 5vw, 56px)); padding-left: clamp(20px, 5vw, 56px); padding-right: clamp(20px, 5vw, 56px); }
+  .screen { flex: 0 0 min(72vw, 280px); scroll-snap-align: start; }
+}
+
+/* founder story (optional per offering) */
+.story-body { max-width: 680px; border-left: 3px solid var(--accent); padding-left: clamp(18px, 3vw, 28px); }
+.story-body p { margin: 0 0 16px; font-family: var(--font-serif); font-size: 1.12rem; line-height: 1.6; }
+.story-body p.story-sign { margin: 6px 0 0; font-family: var(--font-body); font-size: 0.86rem; font-weight: 700; color: var(--ink-muted); letter-spacing: 0.02em; }
+
+.chips.sports li strong { font-weight: 800; }
+
 /* related */
 .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
 .related-card { border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 8px; text-decoration: none; min-height: 130px; }
@@ -119,6 +139,7 @@ h1, h2, h3 { font-family: var(--font-serif); font-weight: 700; text-wrap: balanc
 .related-card[data-tone="club"] { background: var(--club); color: var(--club-ink); }
 .related-card[data-tone="tuition"] { background: var(--tuition); color: var(--tuition-ink); }
 .related-card[data-tone="gold"] { background: var(--gold); color: var(--gold-ink); }
+.related-card[data-tone="tournament"] { background: var(--tournament); color: var(--tournament-ink); }
 .related-card .product-voice { font-size: 1.05rem; }
 .related-card p { margin: 0; font-size: 0.82rem; opacity: 0.88; }
 .related-card .go { margin-top: auto; font-size: 0.78rem; font-weight: 700; opacity: 0.9; }
