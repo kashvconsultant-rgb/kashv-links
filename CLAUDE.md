@@ -78,7 +78,8 @@ assuming either one:**
 Each offering has its own crawlable URL so Google can match specific searches
 ("gold scheme software for jewellers", "club management software Lions"...):
 `/consulting/`, `/contentpilot-ai/`, `/kooli/`, `/club-management/`,
-`/tuition-management/`, `/gold-scheme/`, `/tournament-management/` (each is `<slug>/index.html`, linked with a
+`/tuition-management/`, `/gold-scheme/`, `/tournament-management/`,
+`/it-manager-as-a-service/` (a service, not an app; each is `<slug>/index.html`, linked with a
 trailing slash and canonicalised with one so it works on any static host).
 
 - Shared files: `offering.css` (styles) and `offering.js` (renderer + lead form).
@@ -105,8 +106,13 @@ trailing slash and canonicalised with one so it works on any static host).
   ignored by pages that omit them): `screens` (phone screenshot strip, images in
   `<slug>/img/`), `story` (founder's "why we built it" note, `eyebrow`/`heading`/
   `paragraphs`/`signature`), and `sports` (chip list). Used by Tournament Management.
+  Also optional: `scope` (+ `scopeHeading`/`scopeIntro`; three cards, each
+  `{title, kind: yes|no|ask, items[]}`), an `order` array that overrides the default
+  section order for that page (e.g. `["audience","steps","features","scope","story","faq"]`),
+  and `href`/`linkLabel` on a feature card to add a link. Used by IT Manager as a
+  Service. The homepage `services.items[]` cards take the same optional `href`/`linkLabel`.
 - `service` values must match `VALID_SERVICES` in `api/leads.js` (currently
-  consulting, club, tuition, contentpilot, kooli, gold, tournament).
+  consulting, club, tuition, contentpilot, kooli, gold, tournament, itmaas).
 
 ## Chat widget (lead-capture chatbot)
 
@@ -199,6 +205,22 @@ Colors and type are derived from KashV's existing Instagram poster assets
 - Display font is a rounded system stack (`ui-rounded`/"SF Pro Rounded"/"Segoe UI
   Variable Rounded") to echo the pill-shaped strokes in the K mark; body copy uses
   a plain system-ui stack for legibility.
+
+## IT Manager as a Service (ITMaaS)
+
+Replaced the old "03 — Network / Vendor Connect" card (vendor introductions are now
+just one bullet of this service). Positioned as a **part-time IT manager on the buyer's
+side of the table**: gap analysis of existing systems, requirement gathering,
+coordination with the client's vendors, and UAT/acceptance support, on a fixed-fee
+assessment first, then per-project, optionally a monthly hours retainer (a separate
+agreement). Deliberately **advisory only**: no day-to-day IT support, hosting, backups,
+monitoring or system administration, and never signing, ordering, accepting quotes or
+paying vendors without the client's written approval. The page's "We do / We don't /
+Never without written approval" cards mirror clauses 2.4 and 2.8 of the advisory
+contract drafted for this service, so **don't widen the promises on the site beyond
+what that contract allows**. Because KashV also builds software, the page discloses
+that and promises a comparison with at least one alternative. No client is named or
+sectors listed on the page (the service is sector-agnostic by design).
 
 ## Content model
 

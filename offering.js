@@ -94,6 +94,19 @@
     return section("audience", "sports", [el("h2", { text: o.sportsHeading || "Sports supported" })], list);
   }
 
+  function buildScope(o) {
+    if (!o.scope || !o.scope.length) return null;
+    var grid = el("div", { class: "scope-grid" });
+    o.scope.forEach(function (c) {
+      var ul = el("ul");
+      c.items.forEach(function (i) { ul.appendChild(el("li", { text: i })); });
+      grid.appendChild(el("div", { class: "scope-col", "data-kind": c.kind }, [el("h3", { text: c.title }), ul]));
+    });
+    var head = [el("h2", { text: o.scopeHeading || "Scope" })];
+    if (o.scopeIntro) head.push(el("p", { class: "section-intro", text: o.scopeIntro }));
+    return section("scope", "scope", head, grid);
+  }
+
   function buildStory(o) {
     var s = o.story;
     if (!s || !s.paragraphs || !s.paragraphs.length) return null;
@@ -114,7 +127,7 @@
     if (!o.features || !o.features.length) return null;
     var grid = el("div", { class: "feature-grid" });
     o.features.forEach(function (f) {
-      grid.appendChild(el("article", { class: "feature-card" }, [el("h3", { text: f.title }), el("p", { text: f.body })]));
+      grid.appendChild(el("article", { class: "feature-card" }, [el("h3", { text: f.title }), el("p", { text: f.body }), f.href ? el("a", { class: "card-link", href: f.href, text: f.linkLabel || "Learn more →" }) : null]));
     });
     return section("features", "features", [el("h2", { text: o.featuresHeading || "What it does" })], grid);
   }
@@ -173,12 +186,13 @@
       return el("div", { class: "footer-col" }, [el("h4", { text: title }), ul]);
     }
     var tools = content.sisterProjects.map(function (s) { return el("a", { href: s.pageHref, text: s.label }); });
+    tools.unshift(el("a", { href: "/it-manager-as-a-service/", text: "IT Manager as a Service" }));
     tools.unshift(el("a", { href: "/consulting/", text: "Business & IT Consulting" }));
     var social = content.social.map(function (s) { return el("a", { href: s.href, target: "_blank", rel: "noopener", text: s.label }); });
 
     var brandCol = el("div", {}, [
       el("div", { class: "footer-brand" }),
-      el("p", { class: "footer-note", text: "Business strategy, IT consulting, and vendor connections for Coimbatore founders and SMEs, plus the software we built along the way." })
+      el("p", { class: "footer-note", text: "Business strategy, IT consulting, and IT manager as a service for Coimbatore founders and SMEs, plus the software we built along the way." })
     ]);
     var fb = brandCol.querySelector(".footer-brand");
     fb.innerHTML = LOGO;
@@ -289,7 +303,10 @@
       app.innerHTML = "";
       document.body.insertBefore(buildChrome(content, o), app);
       app.appendChild(buildHero(o));
-      [buildScreens(o), buildAudience(o), buildFeatures(o), buildStory(o), buildSteps(o), buildSports(o), buildFaq(o), buildRelated(content, o), buildFinalCta(content, o)]
+      var builders = { screens: buildScreens, audience: buildAudience, features: buildFeatures, scope: buildScope, story: buildStory, steps: buildSteps, sports: buildSports, faq: buildFaq };
+      var order = o.order || ["screens", "audience", "features", "scope", "story", "steps", "sports", "faq"];
+      order.map(function (name) { return builders[name] ? builders[name](o) : null; })
+        .concat([buildRelated(content, o), buildFinalCta(content, o)])
         .forEach(function (node) { if (node) app.appendChild(node); });
       document.body.appendChild(buildFooter(content));
       document.body.appendChild(buildMobileCta(content, o));

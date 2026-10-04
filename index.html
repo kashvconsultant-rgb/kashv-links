@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>KashV Consultancy | Business &amp; IT Consulting in Coimbatore</title>
-<meta name="description" content="KashV Consultancy advises Coimbatore founders and SMEs on business strategy, IT consulting, and trusted local vendor connections — then builds the software that makes the advice stick.">
+<meta name="description" content="KashV Consultancy advises Coimbatore founders and SMEs on business strategy, IT consulting, and IT manager as a service — then builds the software that makes the advice stick.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://kashvconsultancy.com/">
 <meta name="theme-color" content="#12283d">
@@ -14,13 +14,13 @@
 <meta property="og:url" content="https://kashvconsultancy.com/">
 <meta property="og:site_name" content="KashV Consultancy">
 <meta property="og:title" content="KashV Consultancy | Business & IT Consulting in Coimbatore">
-<meta property="og:description" content="Hands-on business strategy, IT consulting, and vendor connections for Coimbatore SMEs — plus the software we built to make the advice stick.">
+<meta property="og:description" content="Hands-on business strategy, IT consulting, and IT manager as a service for Coimbatore SMEs — plus the software we built to make the advice stick.">
 <meta property="og:image" content="https://kashvconsultancy.com/og-image.png">
 <meta property="og:locale" content="en_IN">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="KashV Consultancy | Business & IT Consulting in Coimbatore">
-<meta name="twitter:description" content="Hands-on business strategy, IT consulting, and vendor connections for Coimbatore SMEs — plus the software we built to make the advice stick.">
+<meta name="twitter:description" content="Hands-on business strategy, IT consulting, and IT manager as a service for Coimbatore SMEs — plus the software we built to make the advice stick.">
 <meta name="twitter:image" content="https://kashvconsultancy.com/og-image.png">
 
 <script type="application/ld+json">
@@ -32,7 +32,7 @@
   "url": "https://kashvconsultancy.com/",
   "email": "kashvconsultant@gmail.com",
   "telephone": "+917402600226",
-  "description": "Business strategy, IT consulting, and trusted local vendor connections for founders and SMEs in Coimbatore.",
+  "description": "Business strategy, IT consulting, and IT manager as a service for founders and SMEs in Coimbatore.",
   "areaServed": { "@type": "City", "name": "Coimbatore" },
   "address": {
     "@type": "PostalAddress",
@@ -47,6 +47,7 @@
     "name": "KashV Consultancy services and software",
     "itemListElement": [
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Business & IT Consulting", "url": "https://kashvconsultancy.com/consulting/" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "IT Manager as a Service", "url": "https://kashvconsultancy.com/it-manager-as-a-service/" } },
       { "@type": "Offer", "itemOffered": { "@type": "SoftwareApplication", "name": "ContentPilot AI", "applicationCategory": "BusinessApplication", "url": "https://kashvconsultancy.com/contentpilot-ai/" } },
       { "@type": "Offer", "itemOffered": { "@type": "SoftwareApplication", "name": "Kooli", "applicationCategory": "BusinessApplication", "url": "https://kashvconsultancy.com/kooli/" } },
       { "@type": "Offer", "itemOffered": { "@type": "SoftwareApplication", "name": "Club Management", "applicationCategory": "BusinessApplication", "url": "https://kashvconsultancy.com/club-management/" } },
@@ -228,6 +229,8 @@
   .proof-card .product-voice { font-size: 1.05rem; }
   .proof-card p { margin: 0; font-size: 0.82rem; opacity: 0.88; }
   .proof-card .go { margin-top: auto; font-size: 0.78rem; font-weight: 700; opacity: 0.9; }
+  .service-card .card-link { margin-top: auto; font-weight: 700; font-size: 0.9rem; color: var(--accent); text-decoration: none; }
+  .service-card .card-link:hover { text-decoration: underline; }
   .section-link { display: inline-block; margin-top: 24px; font-weight: 700; font-size: 0.94rem; color: var(--accent); text-decoration: none; }
   .section-link:hover { text-decoration: underline; }
 
@@ -379,7 +382,7 @@
           </svg>
           <span>KashV Consultancy</span>
         </div>
-        <p class="footer-note">Business strategy, IT consulting, and vendor connections for Coimbatore founders and SMEs — plus the software we built along the way.</p>
+        <p class="footer-note">Business strategy, IT consulting, and IT manager as a service for Coimbatore founders and SMEs — plus the software we built along the way.</p>
       </div>
       <div class="footer-col">
         <h4>Contact</h4>
@@ -622,7 +625,8 @@
         el("span", { class: "num", text: item.number }),
         el("h3", { text: item.title }),
         el("p", { text: item.description }),
-        ul
+        ul,
+        item.href ? el("a", { class: "card-link", href: item.href, text: item.linkLabel || "Learn more →" }) : null
       ]));
     });
     return el("section", { class: "services section-block", id: "services" }, [

@@ -9,7 +9,7 @@
   "hero": {
     "eyebrow": "Business & IT Consulting · Coimbatore, Tamil Nadu",
     "headline": "The advisory partner Coimbatore's founders call before the expensive decision.",
-    "lede": "We sit with SMEs, startups, and family businesses through business strategy, IT consulting, and vetted local vendor connections — then build the software that keeps the advice from wearing off after month one.",
+    "lede": "We sit with SMEs, startups, and family businesses through business strategy and IT consulting, and act as a part-time IT manager alongside their software vendors — then build the software that keeps the advice from wearing off after month one.",
     "primaryCtaLabel": "Book a free consultation",
     "primaryCtaHref": "https://ig.me/m/kashvconsultant",
     "secondaryCtaLabel": "Call +91 74026 00226",
@@ -41,14 +41,16 @@
       {
         "number": "02 — Technology",
         "title": "IT Consulting",
-        "description": "The technology call founders can't outsource to a vendor who's also trying to sell them something.",
+        "description": "Independent advice on the technology call, including when the best answer isn't ours.",
         "bullets": ["Software & systems selection", "Build vs. buy decisions", "Digitising manual workflows"]
       },
       {
-        "number": "03 — Network",
-        "title": "Vendor Connect",
-        "description": "Years of vetting local suppliers, contractors, and service providers, handed to you instead of relearned from scratch.",
-        "bullets": ["Vetted local vendor introductions", "Contract & scope sanity checks", "Ongoing vendor management support"]
+        "number": "03 — IT Manager",
+        "title": "IT Manager as a Service",
+        "description": "A part-time IT manager for firms that can't justify a full-time one. We find the gaps in your systems, gather requirements, coordinate your vendors and test what they deliver.",
+        "bullets": ["Gap analysis of your current systems", "Requirements and vendor coordination", "Testing and acceptance on your behalf"],
+        "href": "/it-manager-as-a-service/",
+        "linkLabel": "How it works →"
       }
     ]
   },
@@ -106,6 +108,7 @@
     "servicePlaceholder": "Select a service",
     "serviceOptions": [
       { "value": "consulting", "label": "IT & Business Consulting" },
+      { "value": "itmaas", "label": "IT Manager as a Service" },
       { "value": "club", "label": "Club Management" },
       { "value": "tuition", "label": "Tuition Management" },
       { "value": "contentpilot", "label": "ContentPilot AI" },
@@ -133,8 +136,8 @@
       "featuresHeading": "Three ways we get involved",
       "features": [
         { "title": "Business Strategy", "body": "Pricing, expansion, hiring, and go/no-go calls for founders who want a second, sharper opinion before they commit. Includes growth and pricing strategy, market entry for Coimbatore and Tamil Nadu, and operating model reviews." },
-        { "title": "IT Consulting", "body": "The technology call founders can't outsource to a vendor who is also trying to sell them something. Software and systems selection, build-versus-buy decisions, and digitising manual workflows." },
-        { "title": "Vendor Connect", "body": "Vetted introductions to local suppliers, contractors, and service providers, plus contract and scope sanity checks and ongoing vendor management support." }
+        { "title": "IT Consulting", "body": "Independent advice on the technology call, including when the best answer isn't ours. Software and systems selection, build-versus-buy decisions, and digitising manual workflows." },
+        { "title": "IT Manager as a Service", "body": "A part-time IT manager for firms that can't justify a full-time one: gap analysis of your current systems, requirement gathering, coordination with your vendors, and help testing and accepting what they deliver. We advise and coordinate; we don't run your day-to-day IT.", "href": "/it-manager-as-a-service/", "linkLabel": "How it works →" }
       ],
       "stepsHeading": "How an engagement works",
       "steps": [
@@ -335,6 +338,60 @@
       ],
       "related": ["club-management", "tuition-management", "consulting"],
       "finalHeading": "Ready to run your next tournament smarter?"
+    },
+    "it-manager-as-a-service": {
+      "name": "IT Manager as a Service",
+      "tone": "consulting",
+      "service": "itmaas",
+      "eyebrow": "Consulting · IT Manager as a Service",
+      "headline": "A part-time IT manager for firms that need one but can't justify a full-time hire.",
+      "lede": "Most firms pay software and IT vendors but have nobody on their own side who speaks IT. We act as your IT manager on the projects that matter: finding the gaps in your current systems, writing down what you need, coordinating your vendors, and testing the result before you accept it. We advise and coordinate. We don't run your day-to-day IT.",
+      "primaryCtaLabel": "Book a free consultation",
+      "order": ["audience", "steps", "features", "scope", "story", "faq"],
+      "audienceHeading": "Is this for you?",
+      "audience": ["You depend on software vendors but have no IT person to represent you", "Vendor quotes arrive and you can't tell whether they are fair", "Features you asked for are stuck, late or not quite right", "You need a new system, or want to see where your current one falls short", "You'd like an IT manager's judgement without a full-time salary"],
+      "stepsHeading": "How we work as your IT manager",
+      "steps": [
+        { "title": "Understand", "body": "We learn your business, your systems, your vendors and what keeps going wrong. This review does not need access to sensitive data." },
+        { "title": "Gap analysis", "body": "We compare what your systems do today with what the business needs, and rank the gaps by how much they matter." },
+        { "title": "Requirements", "body": "We talk to the people who use the system and write the requirements down in plain language, prioritised, and signed off by you before any vendor starts work." },
+        { "title": "Coordinate with your vendors", "body": "With your written authority, we raise tickets, ask for documents and quotations, clarify scope, discuss and negotiate with the vendor on your behalf, follow up and report back to you." },
+        { "title": "Test and accept", "body": "We prepare test cases from your requirements, run user acceptance testing (UAT) on each delivery, keep a defect list with the vendor, and recommend whether to accept." }
+      ],
+      "featuresHeading": "What you get",
+      "features": [
+        { "title": "Gap analysis of your current systems", "body": "A clear list of where your software and IT setup fall short of what the business needs, ranked by importance, so you know what to fix first." },
+        { "title": "Product selection advice", "body": "When a gap needs a new product, we compare the realistic options, including more than one vendor, so the choice rests on fit and cost rather than a sales pitch." },
+        { "title": "Requirement gathering", "body": "Requirements written in plain language, so every vendor quotes against the same document and nothing depends on what was said in a meeting." },
+        { "title": "Vendor coordination on your behalf", "body": "We are the single point of contact between you and your vendors' IT teams, so questions get asked, answered and tracked, and you are not chasing." },
+        { "title": "Quote and scope review", "body": "We read quotes and scope documents with you, point out what is missing or vague, and put your questions to the vendor. You decide and you sign." },
+        { "title": "Testing and acceptance (UAT)", "body": "Each delivery is tested against what was agreed before you accept it, with a defect list the vendor has to close." },
+        { "title": "A roadmap and budget", "body": "A prioritised list of fixes and new projects with rough costs, so IT spending follows a plan rather than the loudest request." }
+      ],
+      "scopeHeading": "Clear about what this is, and isn't",
+      "scopeIntro": "The role is deliberately narrow, so you always know who is responsible for what.",
+      "scope": [
+        { "title": "We do", "kind": "yes", "items": ["Gap analysis of your existing systems","Product selection advice","Requirement gathering","Vendor coordination and follow-up","Testing and UAT support","A roadmap and budget for new projects"] },
+        { "title": "We don't", "kind": "no", "items": ["Day-to-day IT support or a helpdesk","Hardware, network or device administration","Backups, hosting or security monitoring","Running or maintaining your systems","Being responsible for a vendor's work"] },
+        { "title": "Never without your written approval", "kind": "ask", "items": ["Signing or changing a contract","Placing an order or accepting a quote","Paying a vendor","Promising prices or timelines","Giving a vendor sensitive or personal data"] }
+      ],
+      "story": {
+        "eyebrow": "A typical engagement",
+        "heading": "What it looks like in practice.",
+        "paragraphs": ["An organisation already runs its core software with an outside vendor. The owner wants clearer visibility, a few missing features, and a straight answer on whether the vendor's quote is fair.", "We start with a short review of what the systems do today and where they fall short. We write the requirements, put them to the vendor, follow up on the vendor's side, and test each delivery against what was agreed.", "The owner makes every decision. We make sure they make it with the facts, and that what gets delivered is what was asked for."],
+        "signature": "An illustration of the kind of work we do, with no client named."
+      },
+      "faq": [
+        { "question": "Is this day-to-day IT support?", "answer": "No. We don't run, host, back up or monitor your systems and we don't provide a helpdesk. This service is for new requirements, gaps in your existing systems, and the projects that fix them." },
+        { "question": "Can you speak to our vendor for us?", "answer": "Yes, once you give them a short letter of authority naming us. We raise tickets, ask for documents and quotes, follow up and report back. We never sign, order, accept a quote or pay anything without your written approval, and you can withdraw the authority at any time." },
+        { "question": "You also build software. Is your advice independent?", "answer": "We tell you up front that we build software. Where an app is one option, we compare it with at least one alternative, and you are free to choose another provider. Building is a separate, optional agreement." },
+        { "question": "What if our vendor won't cooperate?", "answer": "We tell you what happened and lay out your options: escalate, work around it, or change vendor. We can't force a vendor to share access or information." },
+        { "question": "How is it priced, and how long does it last?", "answer": "We usually start with a fixed-fee assessment of around 90 days: review, gap analysis, product advice and a roadmap. Project work after that is scoped project by project, and some clients move to a monthly set of hours. The first conversation is free." },
+        { "question": "Which industries do you work with?", "answer": "All of them. The role is about systems, vendors and requirements, and those look much the same in every industry." },
+        { "question": "Do you work outside Coimbatore?", "answer": "On-site in Coimbatore and the wider Tamil Nadu region, and remotely for firms anywhere." }
+      ],
+      "related": ["consulting", "club-management", "kooli"],
+      "finalHeading": "Need an IT manager's judgement without the full-time cost?"
     }
   },
   "chatbot": {

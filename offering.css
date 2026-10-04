@@ -130,6 +130,21 @@ h1, h2, h3 { font-family: var(--font-serif); font-weight: 700; text-wrap: balanc
 
 .chips.sports li strong { font-weight: 800; }
 
+/* scope: what we do / don't / never without approval */
+.section-intro { margin: 10px 0 0; color: var(--ink-muted); max-width: 56ch; }
+.scope-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+.scope-col { border: 1px solid var(--rule); border-radius: 16px; padding: 24px; background: var(--bg-elevated); }
+.scope-col h3 { font-size: 1.12rem; margin-bottom: 14px; }
+.scope-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.scope-col li { display: flex; gap: 10px; font-size: 0.92rem; color: var(--ink-muted); }
+.scope-col li::before { flex: none; font-weight: 800; }
+.scope-col[data-kind="yes"] li::before { content: "✓"; color: var(--accent); }
+.scope-col[data-kind="no"] li::before { content: "✕"; color: var(--ink-muted); }
+.scope-col[data-kind="ask"] { border-color: var(--accent); }
+.scope-col[data-kind="ask"] li::before { content: "!"; color: var(--accent); }
+.feature-card .card-link { margin-top: auto; font-weight: 700; font-size: 0.9rem; color: var(--accent); text-decoration: none; }
+.feature-card .card-link:hover { text-decoration: underline; }
+
 /* related */
 .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
 .related-card { border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 8px; text-decoration: none; min-height: 130px; }
